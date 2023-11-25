@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2023/11/17 21:06:31 by maalexan         ###   ########.fr        #
+#    Updated: 2023/11/25 10:41:59 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLXLIB		:=	./libs/libmlx42.a
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 BCFLAGS		:=	-Wall -Wextra -Werror -g -I ./bonus/incl
-LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm
+LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 
 # Source files
 FUN			:=	main.c \
