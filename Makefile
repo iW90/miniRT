@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2023/11/25 10:41:59 by maalexan         ###   ########.fr        #
+#    Updated: 2023/11/25 10:55:10 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 
 # Source files
 FUN			:=	main.c \
+				exit_hook.c \
 
 # Object files
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)
