@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:03:22 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/08 11:59:11 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:18:04 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ size_t	ft_abs(int n);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
+double	ft_atof(const char *str);
 
 // Memory
 void	ft_bzero(void *s, size_t n);
