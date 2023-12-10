@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/10 11:54:25 by maalexan         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:41:00 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <string.h>
 # include <unistd.h>
 # include "mlx/MLX42/MLX42.h"
+
+# include "../libs/libft/incl/libft.h"
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800

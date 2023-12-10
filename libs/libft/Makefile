@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 17:06:10 by inwagner          #+#    #+#              #
-#    Updated: 2023/11/17 19:50:19 by maalexan         ###   ########.fr        #
+#    Updated: 2023/12/10 16:20:03 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OSRC	:=	./objs/
 
 # MANDATORY
 FTS		:=	ft_abs.c \
+			ft_atof.c \
 			ft_atoi.c \
 			ft_atol.c \
 			ft_bzero.c \
