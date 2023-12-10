@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:00:54 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 12:36:32 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:36:52 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_object
 	double		dia;
 	double		hgt;
 	int			rgb[3];
-	s_object	next;
+	s_object	*next;
 }			t_obj;
 
 /* SINGLETON
