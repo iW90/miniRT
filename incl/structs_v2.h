@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:00:54 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 12:35:17 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:36:32 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ typedef struct s_light //identifier L - example: L -40.0,50.0,0.0 0.6 10,0,255
 */
 typedef struct s_object
 {
-	t_type	type;
-	double	coords[3];
-	double	vector[3];
-	double	dia;
-	double	hgt;
-	int		rgb[3];
+	t_type		type;
+	double		coords[3];
+	double		vector[3];
+	double		dia;
+	double		hgt;
+	int			rgb[3];
+	s_object	next;
 }			t_obj;
 
 /* SINGLETON
