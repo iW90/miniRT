@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs_indy.h                                     :+:      :+:    :+:   */
+/*   structs_v2.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:00:54 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 12:26:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:35:17 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ typedef struct s_ambient //identifier A - example:	A 0.2	255,255,255
 	int		rgb[3];
 }			t_amb;
 
-typedef struct s_camera // identifier C - example: C -50.0,0,20	0,0,1	70
+typedef struct s_camera //identifier C - example: C -50.0,0,20	0,0,1	70
 {
 	double	coords[3];
 	double	vector[3];
 	int		fov; // from 0 to 180
 }			t_cam;
 
-typedef struct s_light
+typedef struct s_light //identifier L - example: L -40.0,50.0,0.0 0.6 10,0,255
 {
 	double	coords[3];
 	double	bri; // 0.0 to 1.0
