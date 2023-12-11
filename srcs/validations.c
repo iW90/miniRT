@@ -6,32 +6,11 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:58:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 21:14:38 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 22:01:34 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	validate_acl(char	*letter)
-{
-	if (*letter == 'A')
-	{
-		
-		return (1);
-	}
-	else if (*letter == 'C')
-	{
-		
-		return (2);
-	}
-	else if (*letter == 'L')
-	{
-		
-		return (3);
-	}
-	else
-		return (7);
-}
 
 void	validate_file(char *argv)
 {
