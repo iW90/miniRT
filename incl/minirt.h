@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/10 14:41:00 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:57:40 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <string.h>
 # include <unistd.h>
 # include "mlx/MLX42/MLX42.h"
-
 # include "../libs/libft/incl/libft.h"
+# include "scene.h"
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
