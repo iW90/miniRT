@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/10 20:57:40 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:36:28 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,16 @@
 # include "mlx/MLX42/MLX42.h"
 # include "../libs/libft/incl/libft.h"
 # include "scene.h"
+# include "errors.h"
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
+
+typedef enum e_boolean
+{
+	FALSE,
+	TRUE
+}	t_bool;
 
 void	key_hook(struct mlx_key_data key_data, void* param);
 void	close_hook(void *param);

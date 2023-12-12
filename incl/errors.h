@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validations_object.c                               :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 22:01:15 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 18:25:39 by inwagner         ###   ########.fr       */
+/*   Created: 2023/12/12 19:36:08 by inwagner          #+#    #+#             */
+/*   Updated: 2023/12/12 19:37:37 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-void	validate_sphere()
-{
-	
-}
+// -2: Invalid ACL
+// -3: Invalid Object
 
-void	validate_plane()
-{
-	
-}
 
-void	validate_cylinder()
-{
-	
-}
-
-void	validate_obj(char *letter)
-{
-	if (*letter == 's')
-		validate_sphere(letter);
-	if (*letter == 'p')
-		validate_plane(letter);
-	if (*letter == 'c')
-		validate_cylinder(letter);
-}
+#endif
