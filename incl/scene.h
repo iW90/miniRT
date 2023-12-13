@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/10 21:06:18 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:51:32 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ typedef struct s_light //identifier L - example: L -40.0,50.0,0.0 0.6 10,0,255
 
 typedef struct s_object
 {
-	t_type		type;
-	double		cds[3];
-	double		vts[3];
-	double		dia;
-	double		hgt;
-	int			rgb[3];
-	s_object	*next;
+	t_type			type;
+	double			cds[3];
+	double			vts[3];
+	double			dia;
+	double			hgt;
+	int				rgb[3];
+	struct s_object	*next;
 }				t_obj;
 
 typedef struct s_configuration
@@ -73,5 +73,17 @@ typedef struct s_configuration
 	t_obj	*objs;
 	char	*line;
 }			t_conf;
+
+t_conf	*get_scene(void);
+
+void	validate_ambient(char *line);
+
+void	validate_space(char *line, int *i, int next);
+double	get_double_number(char *line, int *i, double min, double max);
+int		get_int_number(char *line, int *i, int min, int max);
+void	get_rgb(char *line, int *i, int *rgb);
+void	get_xyz(char *line, int *i, double *xyz, int vts);
+
+void	add_object(t_obj *object);
 
 #endif

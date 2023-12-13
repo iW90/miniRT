@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2023/11/25 10:55:10 by maalexan         ###   ########.fr        #
+#    Updated: 2023/12/12 21:29:29 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,12 @@ LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 # Source files
 FUN			:=	main.c \
 				exit_hook.c \
+				exit_program.c \
+				validations_getters.c \
+				validations_object.c \
+				validations_scene.c \
+				validations_utils.c \
+				validations.c
 
 # Object files
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)

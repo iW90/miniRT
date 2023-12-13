@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:58:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 21:14:03 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:28:03 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	parse_validations(char *line)
 		return ;
 	else if (*line == 'A')
 		validate_ambient(line);
-	else if (*line == 'C')
-		validate_camera(line);
-	else if (*line == 'L')
-		validate_light(line);
-	else if (*line == 's')
-		validate_sphere(line);
-	else if (*line == 'p')
-		validate_plane(line);
-	else if (*line == 'c')
-		validate_cylinder(line);
+	//else if (*line == 'C')
+	//	validate_camera(line);
+	//else if (*line == 'L')
+	//	validate_light(line);
+	//else if (*line == 's')
+	//	validate_sphere(line);
+	//else if (*line == 'p')
+	//	validate_plane(line);
+	//else if (*line == 'c')
+	//	validate_cylinder(line);
 	else
 		print_error(-2);
 }

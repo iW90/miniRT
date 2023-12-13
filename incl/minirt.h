@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/12 19:36:28 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:53:53 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "mlx/MLX42/MLX42.h"
 # include "../libs/libft/incl/libft.h"
 # include "scene.h"
@@ -33,5 +34,7 @@ typedef enum e_boolean
 
 void	key_hook(struct mlx_key_data key_data, void* param);
 void	close_hook(void *param);
+
+void	print_error(int errn);
 
 #endif

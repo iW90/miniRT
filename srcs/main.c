@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:02:57 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/10 21:00:46 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:25:05 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	main(int argc, char **argv)
 		print_error(22);
 
 	//open_window();
+
 	return (0);
 }
