@@ -6,37 +6,50 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 20:21:03 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 20:57:27 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
-double	get_double_number(char *line, int *i, double min, double max)
+static int	get_rgb_number(char *line, int *i, int color)
 {
-	double	number;
+	int	number;
 
-	if (!ft_isdigit(line[i]) && line[i] != '.')
+	number = ft_atoi(line[i]);
+	if (number < 0 || number > 255)
 		print_error(-2);
-	number = ft_atof(line[i]);
-	while (ft_isdigit(line[i]) || line[i] == '.')
+	while (ft_isdigit(line[i]))
 		i++;
-	if (number < min || number > max)
+	if (color < 2 && line[i] != ',')
 		print_error(-2);
 	return (number);
 }
 
-int	get_int_number(char *line, int *i, int min, int max)
+void	get_rgb(char *line, int *i, int *rgb)
 {
-	int	number;
+	rgb[R] = get_rgb_number(line, &i, R);
+	rgb[G] = get_rgb_number(line, &i, G);
+	rgb[B] = get_rgb_number(line, &i, B);
+}
 
-	if (!ft_isdigit(line[i]))
+static double	get_xyz_number(char *line, int *i, int axis, int vts)
+{
+	double	number;
+
+	number = ft_atof(line[i]);
+	if (vts && (number < -1.0 || number > 1.0))
 		print_error(-2);
-	number = ft_atoi(line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
-	if (number < min || number > max)
+	if (color < 2 && line[i] != ',')
 		print_error(-2);
 	return (number);
+}
+
+void	get_xyz(char *line, int *i, double *xyz, int vts)
+{
+	xyz[X] = get_xyz_number(line, &i, X);
+	xyz[Y] = get_xyz_number(line, &i, Y);
+	xyz[Z] = get_xyz_number(line, &i, Z);
 }

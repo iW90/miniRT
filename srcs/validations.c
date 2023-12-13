@@ -1,62 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:58:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 22:01:34 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:14:03 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	validate_file(char *argv)
-{
-	int	fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		print_error(-1);
-	format_validation(argv, fd);
-	fd = close(fd);
-}
-
 void	parse_validations(char *line)
 {
-	int	sum;
-	int	acl;
-
-	sum = 0;
-	acl = 0;
-	if (*line == '\n')
+	if (*line == '\n' || !line)
 		return ;
-	else if (*line == 's' || *line == 'p' || *line == 'c' )
-		validate_obj(*line);
-	else if (*line == 'L' || *line == 'A' || *line == 'C' )
-	{
-		sum += validate_acl(*line);
-		if (sum != 6 && ++acl != 3)
-			print_error(-2);
-	}
+	else if (*line == 'A')
+		validate_ambient(line);
+	else if (*line == 'C')
+		validate_camera(line);
+	else if (*line == 'L')
+		validate_light(line);
+	else if (*line == 's')
+		validate_sphere(line);
+	else if (*line == 'p')
+		validate_plane(line);
+	else if (*line == 'c')
+		validate_cylinder(line);
 	else
 		print_error(-2);
 }
 
-void	validate_formatation(char *file, int fd)
+void	validate_file(char *argv)
 {
+	int		fd;
 	char	*line;
 
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		print_error(-1);
 	line = get_next_line(fd);
 	get_scene()->line = line;
 	while (line)
 	{
-		while (ft_isspace(line))
+		while (ft_isspace(*line))
 			line++;
 		parse_validations(line);
 		free(line);
-		get_scene()->line = NULL;
 		line = get_next_line(fd);
 	}
+	fd = close(fd);
 }

@@ -6,13 +6,14 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:36:08 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 19:37:37 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 20:42:16 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+// -1: perror
 // -2: Invalid ACL
 // -3: Invalid Object
 
