@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/12 21:53:53 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:08:08 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
+
+# ifndef DBL_MIN
+#  define DBL_MIN 2.225074e-308
+# endif
+
+# ifndef DBL_MAX
+#  define DBL_MAX 1.797693e+308
+# endif
+
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
+
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
 
 typedef enum e_boolean
 {

@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/12 21:51:32 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:23:39 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,5 @@ double	get_double_number(char *line, int *i, double min, double max);
 int		get_int_number(char *line, int *i, int min, int max);
 void	get_rgb(char *line, int *i, int *rgb);
 void	get_xyz(char *line, int *i, double *xyz, int vts);
-
-void	add_object(t_obj *object);
 
 #endif

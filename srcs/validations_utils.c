@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:06:57 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 21:50:36 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:18:36 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,4 @@ int	get_int_number(char *line, int *i, int min, int max)
 	if (number < min || number > max)
 		print_error(-2);
 	return (number);
-}
-
-void	add_object(t_obj *object)
-{
-	t_obj	*last;
-
-	last = get_scene()->objs;
-	while (last->next)
-		last = last->next;
-	last->next = object;
 }

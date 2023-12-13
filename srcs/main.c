@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:02:57 by maalexan          #+#    #+#             */
-/*   Updated: 2023/12/12 21:25:05 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:33:00 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		print_error(22);
 	len = ft_strlen(argv[1]);
-	ext = ft_strncmp(&argv[1][len - 3], ".rt", 4);
+	ext = ft_strncmp(&argv[1][len - 3], ".rt", 4); //arrumar len < 3 que dá segf
 	if (len < 5 || ext)
 		print_error(22);
 
