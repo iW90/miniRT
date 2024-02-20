@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   util_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/20 19:10:29 by maalexan         ###   ########.fr       */
+/*   Created: 2024/02/20 19:06:48 by maalexan          #+#    #+#             */
+/*   Updated: 2024/02/20 19:43:12 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include "mlx/MLX42/MLX42.h"
-# include "structs.h"
-
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
-
-void	key_hook(struct mlx_key_data key_data, void* param);
-void	close_hook(void *param);
-
-#endif
+float	rt_deg2grad(float degrees)
+{
+	return (degrees * M_PI / 180.0f);
+}

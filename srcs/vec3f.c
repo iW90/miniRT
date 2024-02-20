@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   vec3f.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/20 19:10:29 by maalexan         ###   ########.fr       */
+/*   Created: 2024/02/20 19:39:59 by maalexan          #+#    #+#             */
+/*   Updated: 2024/02/20 19:42:45 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include "mlx/MLX42/MLX42.h"
-# include "structs.h"
+t_vec3f	vec3f_add(t_vec3f a, t_vec3f b)
+{
+	return ((t_vec3f){a.x + b.x, a.y + b.y, a.z + b.z});
+}
 
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
+t_vec3f	vec3f_scale(t_vec3f v, float scalar)
+{
+	return ((t_vec3f){v.x * scalar, v.y * scalar, v.z * scalar});
+}
 
-void	key_hook(struct mlx_key_data key_data, void* param);
-void	close_hook(void *param);
+t_vec3f	vec3f_normalize(t_vec3f v)
+{
+	float	len;
 
-#endif
+	len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+	v.x /= len;
+	v.y /= len;
+	v.z /= len;
+	return (v);
+}
