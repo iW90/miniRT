@@ -6,15 +6,25 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:39:59 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/20 19:42:45 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:29:52 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+float	vec3f_dot(t_vec3f a, t_vec3f b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
 t_vec3f	vec3f_add(t_vec3f a, t_vec3f b)
 {
 	return ((t_vec3f){a.x + b.x, a.y + b.y, a.z + b.z});
+}
+
+t_vec3f	vec3f_sub(t_vec3f a, t_vec3f b)
+{
+	return ((t_vec3f){a.x - b.x, a.y - b.y, a.z - b.z});
 }
 
 t_vec3f	vec3f_scale(t_vec3f v, float scalar)

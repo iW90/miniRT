@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/20 16:45:43 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:19:17 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_matrix44f
 {
 	float	m[4][4];
 }	t_matrix44f;
+
+typedef struct s_ray
+{
+	t_vec3f	orig;
+	t_vec3f	dir;
+}	t_ray;
 
 typedef struct s_ambient //identifier A - example:	A 0.2	255,255,255
 {
