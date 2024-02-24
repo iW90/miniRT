@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:18:15 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:32:54 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:43:58 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,13 @@ static inline float	radius_squared(const t_sphere *sphere)
 	return (radius * radius);
 }
 
-t_bool	intersect_sphere(t_ray ray, void *object, float *t)
+t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t)
 {
 	float		t0;
 	float		t1;
-	t_sphere	*sphere;
 	t_vec3f		to_center;
 	t_vec3f		coeffs;
 
-	sphere = (t_sphere *)object;
 	to_center = vec3f_sub(ray.orig, sphere->coords);
 	coeffs.x = vec3f_dot(ray.dir, ray.dir);
 	coeffs.y = 2.0 * vec3f_dot(ray.dir, to_center);

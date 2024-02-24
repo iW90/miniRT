@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:01:15 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:46:08 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_vec3f	vec3f_normalize(t_vec3f v);
 
 float	rt_deg2grad(float degrees);
 t_bool	solve_quadratic(t_vec3f coeffs, float *t0, float *t1);
+
+t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t);
 
 mlx_image_t *render(void);
 

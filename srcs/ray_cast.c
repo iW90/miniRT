@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:14:37 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:37:48 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:45:07 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_vec3f	ray_point_at(t_ray ray, float t);
 t_vec3f	object_normal_at(t_object *objects, t_vec3f point);
 
-static t_bool	hit_or_miss(t_ray r, t_object *object, float *t) 
+static t_bool	ray_hit(t_ray r, t_object *object, float *t) 
 {
 	if (object->type == SPHERE)
-		return (intersect_sphere(r, object, t));
+		return (intersect_sphere(r, object->data.sphere, t));
 	return (FALSE);
 }
 
@@ -30,7 +30,7 @@ t_intersect *cast_ray(t_ray ray, t_object *objects)
 	{
 		float t;
 		// Check if the ray intersects the current object
-		if (objects->intersect(ray, objects->data, &t) && t > 0) {
+		if (ray_hit(ray, objects, &t) && t > 0) {
 			// Allocate and fill a new intersection structure
 			t_intersect *new_intersection = (t_intersect *)malloc(sizeof(t_intersect));
 			new_intersection->distance = t;

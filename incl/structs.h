@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:01:28 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:43:09 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ typedef struct s_object
 {
 	t_type			type;
 	u_object_data	data;
-	t_bool			(*intersect)(t_ray, void *, float *t);
 	struct s_object	*next;
 }	t_object;
 
