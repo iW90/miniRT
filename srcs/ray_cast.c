@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:14:37 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:45:07 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:34:15 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,46 @@ static t_bool	ray_hit(t_ray r, t_object *object, float *t)
 	return (FALSE);
 }
 
-t_intersect *cast_ray(t_ray ray, t_object *objects)
+void	insert_intersection_sorted(t_intersect **head, t_intersect *new_intersection)
 {
-	t_intersect *head = NULL;  // Head of the linked list of intersections for this ray
+	t_intersect	**current;
 
-	while (objects)
-	{
-		float t;
-		// Check if the ray intersects the current object
-		if (ray_hit(ray, objects, &t) && t > 0) {
-			// Allocate and fill a new intersection structure
-			t_intersect *new_intersection = (t_intersect *)malloc(sizeof(t_intersect));
-			new_intersection->distance = t;
-			new_intersection->point = ray_point_at(ray, t);  // Calculate the intersection point
-			new_intersection->normal = object_normal_at(objects, new_intersection->point); // Calculate the normal at the intersection
-			new_intersection->object = objects;
-
-			// Insert the new intersection into the linked list in sorted order
-			insert_intersection_sorted(&head, new_intersection);
-		}
-		objects = objects->next; // Move to the next object in the scene
-	}
-
-	return head;  // Return the head of the linked list of intersections
+	current = head;
+	while (*current && (*current)->distance < new_intersection->distance)
+		current = &((*current)->next);
+	new_intersection->next = *current;
+	*current = new_intersection;
 }
 
+void	add_intersection(t_intersect **head, t_ray ray, t_object *object, float t)
+{
+	t_intersect	*new_intersection;
 
+	new_intersection = malloc(sizeof(t_intersect));
+	if (!new_intersection)
+		exit_program(OUT_OF_MEMORY);
+	*new_intersection = (t_intersect){0};
+	new_intersection->distance = t;
+	new_intersection->point = ray_point_at(ray, t);  // Assume this function calculates the intersection point
+	new_intersection->normal = object_normal_at(object, new_intersection->point);  // Assume this function calculates the normal at the intersection
+	new_intersection->object = object;
+	insert_intersection_sorted(head, new_intersection);
+}
+
+t_intersect *cast_ray(t_ray ray, t_object *objects)
+{
+	t_intersect	*head;
+	float		t;
+
+	head = NULL;
+	while (objects)
+	{
+		if (ray_hit(ray, objects, &t) && t > 0)
+			add_intersection(&head, ray, objects, t);
+		objects = objects->next;
+	}
+	return (head);
+}
 
 /*
 ** Casts a ray into the scene and determines the color seen along that ray, 

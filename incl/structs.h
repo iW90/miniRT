@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:43:09 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:52:10 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,31 +80,31 @@ typedef struct s_cylinder
 	struct s_cylinder	*next;
 }					t_cylinder;
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
 }				t_scene;
 
-typedef enum
+typedef enum e_type
 {
 	SPHERE,
 	PLANE,
 	CYLINDER	
 }	t_type;
 
-typedef union	u_object_data
+typedef union u_object_data
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
-}	u_object_data;
+}	t_object_data;
 
 typedef struct s_object
 {
 	t_type			type;
-	u_object_data	data;
+	t_object_data	data;
 	struct s_object	*next;
 }	t_object;
 

@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:46:08 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:58:41 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define TRUE 1
 # define FALSE 0
+# define OUT_OF_MEMORY 12
 
 typedef int t_bool;
 
