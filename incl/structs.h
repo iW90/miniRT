@@ -6,12 +6,15 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/21 22:19:17 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:01:28 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 800
 
 typedef struct s_vec3f
 {
@@ -84,11 +87,40 @@ typedef struct	s_scene
 	t_light		*light;
 }				t_scene;
 
-typedef struct s_objects
+typedef enum
 {
-	t_sphere	*sp;
-	t_plane		*pl;
-	t_cylinder	*cy;
-}				t_objects;
+	SPHERE,
+	PLANE,
+	CYLINDER	
+}	t_type;
+
+typedef union	u_object_data
+{
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
+}	u_object_data;
+
+typedef struct s_object
+{
+	t_type			type;
+	u_object_data	data;
+	t_bool			(*intersect)(t_ray, void *, float *t);
+	struct s_object	*next;
+}	t_object;
+
+typedef struct s_intersect
+{
+	float				distance;	// Distance from the ray origin to the intersection
+	t_vec3f				point;		// Intersection point
+	t_vec3f				normal;		// Normal at the intersection point
+	t_object			*object;	// Pointer to the intersected object
+	struct s_intersect	*next;		// Next intersection in the list
+}	t_intersect;
+
+typedef struct s_framebuffer
+{
+	t_intersect		*intersections[WIN_WIDTH * WIN_HEIGHT];
+}	t_framebuffer;
 
 #endif

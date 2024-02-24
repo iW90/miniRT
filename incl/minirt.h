@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/21 22:34:13 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:01:15 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include "mlx/MLX42/MLX42.h"
 # include "structs.h"
 
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
 # define TRUE 1
 # define FALSE 0
 
@@ -36,5 +34,10 @@ t_vec3f	vec3f_add(t_vec3f a, t_vec3f b);
 t_vec3f	vec3f_sub(t_vec3f a, t_vec3f b);
 t_vec3f	vec3f_scale(t_vec3f v, float scalar);
 t_vec3f	vec3f_normalize(t_vec3f v);
+
+float	rt_deg2grad(float degrees);
+t_bool	solve_quadratic(t_vec3f coeffs, float *t0, float *t1);
+
+mlx_image_t *render(void);
 
 #endif

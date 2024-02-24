@@ -6,11 +6,48 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:14:37 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/22 13:21:11 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:37:48 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_vec3f	ray_point_at(t_ray ray, float t);
+t_vec3f	object_normal_at(t_object *objects, t_vec3f point);
+
+static t_bool	hit_or_miss(t_ray r, t_object *object, float *t) 
+{
+	if (object->type == SPHERE)
+		return (intersect_sphere(r, object, t));
+	return (FALSE);
+}
+
+t_intersect *cast_ray(t_ray ray, t_object *objects)
+{
+	t_intersect *head = NULL;  // Head of the linked list of intersections for this ray
+
+	while (objects)
+	{
+		float t;
+		// Check if the ray intersects the current object
+		if (objects->intersect(ray, objects->data, &t) && t > 0) {
+			// Allocate and fill a new intersection structure
+			t_intersect *new_intersection = (t_intersect *)malloc(sizeof(t_intersect));
+			new_intersection->distance = t;
+			new_intersection->point = ray_point_at(ray, t);  // Calculate the intersection point
+			new_intersection->normal = object_normal_at(objects, new_intersection->point); // Calculate the normal at the intersection
+			new_intersection->object = objects;
+
+			// Insert the new intersection into the linked list in sorted order
+			insert_intersection_sorted(&head, new_intersection);
+		}
+		objects = objects->next; // Move to the next object in the scene
+	}
+
+	return head;  // Return the head of the linked list of intersections
+}
+
+
 
 /*
 ** Casts a ray into the scene and determines the color seen along that ray, 
@@ -35,8 +72,8 @@
 ** with the ambient light color to determine the final color seen in the 
 ** direction of the ray. If no intersection is found, the resulting color
 ** is solely determined by the ambient light.
-*/
-t_vec3f	cast_ray(t_vec3f orig, t_vec3f dir, t_sphere *spheres, t_ambient amb)
+
+t_vec3f	cast_ray(t_ray r, t_object *objects, t_ambient amb)
 {
 	float		t;
 	float		closest_t;
@@ -47,18 +84,19 @@ t_vec3f	cast_ray(t_vec3f orig, t_vec3f dir, t_sphere *spheres, t_ambient amb)
 	hit_color = (t_vec3f){0};
 	closest_t = INFINITY;
 	closest_sphere = NULL;
-	while (spheres)
+	while (objects)
 	{
 		t = INFINITY;
-		if (intersect((t_ray){orig, dir}, spheres, &t) && t < closest_t)
+		if (intersect(r, spheres, &t) && t < closest_t)
 		{
 			closest_t = t;
 			closest_sphere = spheres;
 		}
-		spheres = spheres->next;
+		objects = objects->next;
 	}
 	if (closest_sphere)
 		hit_color = vec3f_scale(closest_sphere->rgb, amb.ratio);
 	ambient_color = vec3f_scale(amb.rgb, amb.ratio);
 	return (vec3f_add(hit_color, ambient_color));
 }
+*/
