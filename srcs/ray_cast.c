@@ -6,14 +6,35 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:14:37 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/24 12:34:15 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:41:09 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec3f	ray_point_at(t_ray ray, float t);
-t_vec3f	object_normal_at(t_object *objects, t_vec3f point);
+t_vec3f	ray_point_at(t_ray ray, float t)
+{
+	t_vec3f point;
+
+	point.x = ray.orig.x + t * ray.dir.x;
+	point.y = ray.orig.y + t * ray.dir.y;
+	point.z = ray.orig.z + t * ray.dir.z;
+	return (point);
+}
+
+t_vec3f	object_normal_at(t_object *object, t_vec3f point)
+{
+	t_vec3f	normal;
+
+	if (object->type == SPHERE )
+	{
+			normal = vec3f_sub(point, object->data.sphere->coords); // point - sphere center
+			normal = vec3f_normalize(normal); // Normalize the vector
+	}
+	if (object->type == PLANE)
+		normal = object->data.plane->norm_vector;  // The normal vector is constant for a plane
+	return (normal);
+}
 
 static t_bool	ray_hit(t_ray r, t_object *object, float *t) 
 {
@@ -42,8 +63,8 @@ void	add_intersection(t_intersect **head, t_ray ray, t_object *object, float t)
 		exit_program(OUT_OF_MEMORY);
 	*new_intersection = (t_intersect){0};
 	new_intersection->distance = t;
-	new_intersection->point = ray_point_at(ray, t);  // Assume this function calculates the intersection point
-	new_intersection->normal = object_normal_at(object, new_intersection->point);  // Assume this function calculates the normal at the intersection
+	new_intersection->point = ray_point_at(ray, t);
+	new_intersection->normal = object_normal_at(object, new_intersection->point);
 	new_intersection->object = object;
 	insert_intersection_sorted(head, new_intersection);
 }
@@ -113,4 +134,20 @@ t_vec3f	cast_ray(t_ray r, t_object *objects, t_ambient amb)
 	ambient_color = vec3f_scale(amb.rgb, amb.ratio);
 	return (vec3f_add(hit_color, ambient_color));
 }
+
+	if (object->type == CYLINDER)
+	{
+		// Vector from cylinder's base center to the intersection point
+		t_vec3f to_point = vec3f_sub(intersection_point, object->data.cylinder->base_center);
+		
+		// Project to_point onto the cylinder's axis to find the closest point on the axis
+		float projection_length = vec3f_dot(to_point, object->data.cylinder->axis);
+		t_vec3f closest_point_on_axis = vec3f_scale(object->data.cylinder->axis, projection_length);
+		
+		// The normal is the vector from the closest point on the axis to the intersection point
+		normal = vec3f_sub(to_point, closest_point_on_axis);
+		normal = vec3f_normalize(normal);  // Make sure the normal is a unit vector
+	}
+
+
 */
