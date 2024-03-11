@@ -78,7 +78,7 @@ clean:
 
 fclean: clean
 	@$(MAKE) -C $(FTLIB_DIR) --silent fclean
-	@[ -f $(MLXLIB) ] && rm $(MLXLIB) || [ -f Makefile ]
+#	@[ -f $(MLXLIB) ] && rm $(MLXLIB) || [ -f Makefile ]
 	@[ -d ./incl/mlx ] && rm -rf ./incl/mlx || [ -f Makefile ]
 	@[ -f ./$(NAME) ] && rm $(NAME) || echo Program $(NAME) isn\'t compiled
 	@[ -f ./$(NAMEB) ] && rm $(NAMEB)|| echo Bonus $(NAMEB) isn\'t compiled
