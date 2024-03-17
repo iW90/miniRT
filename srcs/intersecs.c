@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:51:28 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/12 23:16:08 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/17 12:30:42 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool	intersect_plane(t_ray r, t_plane *plane, float *t)
 
 	p0_l0 = vec3f_sub(plane->coords, r.orig);
 	denom = vec3f_dot(plane->norm_vector, r.dir);
-	if (fabs(denom) > 1e-6)
+	if (fabs(denom) > EPSILON)
 	{
 		*t = vec3f_dot(p0_l0, plane->norm_vector) / denom;
 		return (*t >= 0);
@@ -38,7 +38,6 @@ void	quadratic_calc(t_ray ray, t_vec3f center, float radius, t_vec3f *coefs)
 	coefs->y = 2.0 * vec3f_dot(ray.dir, to_center);
 	coefs->z = vec3f_dot(to_center, to_center) - radius_squared;
 }
-
 
 t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t)
 {
@@ -60,39 +59,55 @@ t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t)
 	return (TRUE);
 }
 
-static t_bool	check_cylinder_point(t_ray ray, t_cylinder *c, float t)
+static t_bool	check_intersec(t_ray r, t_cylinder *c, float t, t_bool *cap)
 {
 	float	height;
+	float	distance_squared;
 	t_vec3f	intersect;
+	t_vec3f	to_center;
 
-	if (t < 0)
-		return (FALSE);
-	intersect = ray_point_at(ray, t);
+	intersect = ray_point_at(r, t);
 	height = intersect.y - c->coords.y;
-	if (height >= 0 && height <= c->height)
+    if (height >= 0 && height <= c->height)
+	{
+		*cap = FALSE;
 		return (TRUE);
-	return (FALSE);
+    }
+    if (fabs(height) < EPSILON || fabs(height - c->height) < EPSILON)
+	{
+		to_center.x = intersect.x - c->coords.x;
+		to_center.y = 0;
+		to_center.z = intersect.z - c->coords.z;
+		distance_squared = vec3f_dot(to_center, to_center);
+		if (distance_squared <= (c->diameter / 2.0f) * (c->diameter / 2.0f))
+		{
+			*cap = TRUE;
+			return (TRUE);
+        }
+    }
+    return (FALSE);
 }
 
-t_bool	intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t)
+t_bool intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t)
 {
 	float	t0;
 	float	t1;
-	float	height;
 	t_vec3f	coefs;
+	t_bool	is_cap;
 
 	quadratic_calc(ray, cylinder->coords, cylinder->diameter / 2.0f, &coefs);
-	if (!solve_quadratic(coefs, &t0, &t1))
-		return (FALSE);
-	if (check_cylinder_point(ray, cylinder, t0))
+	if (solve_quadratic(coefs, &t0, &t1))
 	{
-		*t = t0;
-		return (TRUE);
-	}
-	if (check_cylinder_point(ray, cylinder, t1))
-	{
-		*t = t1;
-		return (TRUE);
+		if (check_intersec(ray, cylinder, t0, &is_cap))
+		{
+			*t = t0;
+			return (TRUE);
+		}
+		if (check_intersec(ray, cylinder, t1, &is_cap))
+		{
+			*t = t1;
+			return (TRUE);
+		}
 	}
 	return (FALSE);
 }

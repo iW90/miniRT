@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/23 22:52:10 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/17 11:33:29 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
+# define EPSILON 1e-6
+
 
 typedef struct s_vec3f
 {
