@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/17 11:33:29 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:36:13 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,18 @@ typedef struct s_light
 	t_vec3f	rgb; // from 0 to 255
 }			t_light;
 
+typedef struct s_scene
+{
+	t_ambient	*ambient;
+	t_camera	*camera;
+	t_light		*light;
+}				t_scene;
+
 typedef struct s_sphere
 {
 	t_vec3f			coords;
 	float			diameter;
 	t_vec3f			rgb; // from 0 to 255
-	struct s_sphere	*next;
 }	t_sphere;
 
 typedef struct s_plane
@@ -69,7 +75,6 @@ typedef struct s_plane
 	t_vec3f			coords;
 	t_vec3f			norm_vector; //from -1 to 1
 	t_vec3f			rgb; // from 0 to 255
-	struct s_plane	*next;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -79,15 +84,7 @@ typedef struct s_cylinder
 	float				diameter;
 	float				height;
 	t_vec3f				rgb; // from 0 to 255
-	struct s_cylinder	*next;
 }					t_cylinder;
-
-typedef struct s_scene
-{
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_light		*light;
-}				t_scene;
 
 typedef enum e_type
 {

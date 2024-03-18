@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:14:37 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/27 21:41:09 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/17 20:13:02 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,15 @@ t_vec3f	ray_point_at(t_ray ray, float t)
 	return (point);
 }
 
-t_vec3f	object_normal_at(t_object *object, t_vec3f point)
-{
-	t_vec3f	normal;
-
-	if (object->type == SPHERE )
-	{
-			normal = vec3f_sub(point, object->data.sphere->coords); // point - sphere center
-			normal = vec3f_normalize(normal); // Normalize the vector
-	}
-	if (object->type == PLANE)
-		normal = object->data.plane->norm_vector;  // The normal vector is constant for a plane
-	return (normal);
-}
-
 static t_bool	ray_hit(t_ray r, t_object *object, float *t) 
 {
 	if (object->type == SPHERE)
 		return (intersect_sphere(r, object->data.sphere, t));
+	else if (object->type == PLANE)
+		return intersect_plane(r, object->data.plane, t);
+	else if (object->type == CYLINDER)
+		return (intersect_cylinder(r, object->data.cylinder, t));
 	return (FALSE);
-}
-
-void	insert_intersection_sorted(t_intersect **head, t_intersect *new_intersection)
-{
-	t_intersect	**current;
-
-	current = head;
-	while (*current && (*current)->distance < new_intersection->distance)
-		current = &((*current)->next);
-	new_intersection->next = *current;
-	*current = new_intersection;
-}
-
-void	add_intersection(t_intersect **head, t_ray ray, t_object *object, float t)
-{
-	t_intersect	*new_intersection;
-
-	new_intersection = malloc(sizeof(t_intersect));
-	if (!new_intersection)
-		exit_program(OUT_OF_MEMORY);
-	*new_intersection = (t_intersect){0};
-	new_intersection->distance = t;
-	new_intersection->point = ray_point_at(ray, t);
-	new_intersection->normal = object_normal_at(object, new_intersection->point);
-	new_intersection->object = object;
-	insert_intersection_sorted(head, new_intersection);
 }
 
 t_intersect *cast_ray(t_ray ray, t_object *objects)
