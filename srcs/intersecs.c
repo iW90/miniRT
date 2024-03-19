@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:51:28 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/17 12:30:42 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:20:36 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static t_bool	check_intersec(t_ray r, t_cylinder *c, float t, t_bool *cap)
 
 	intersect = ray_point_at(r, t);
 	height = intersect.y - c->coords.y;
-    if (height >= 0 && height <= c->height)
+	if (height >= 0 && height <= c->height)
 	{
 		*cap = FALSE;
 		return (TRUE);
-    }
-    if (fabs(height) < EPSILON || fabs(height - c->height) < EPSILON)
+	}
+	if (fabs(height) < EPSILON || fabs(height - c->height) < EPSILON)
 	{
 		to_center.x = intersect.x - c->coords.x;
 		to_center.y = 0;
@@ -83,12 +83,12 @@ static t_bool	check_intersec(t_ray r, t_cylinder *c, float t, t_bool *cap)
 		{
 			*cap = TRUE;
 			return (TRUE);
-        }
-    }
-    return (FALSE);
+		}
+	}
+	return (FALSE);
 }
 
-t_bool intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t)
+t_bool	intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t)
 {
 	float	t0;
 	float	t1;
