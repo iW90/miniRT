@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/17 14:36:13 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:57:49 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
 # define EPSILON 1e-6
-
+# define VIEW_PLANE_DIST_TO_CAM 1.0f
 
 typedef struct s_vec3f
 {

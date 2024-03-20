@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:39:59 by maalexan          #+#    #+#             */
-/*   Updated: 2024/02/21 22:29:52 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:21:17 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ t_vec3f	vec3f_normalize(t_vec3f v)
 	float	len;
 
 	len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
-	v.x /= len;
-	v.y /= len;
-	v.z /= len;
+	if (len > EPSILON)
+	{
+		v.x /= len;
+		v.y /= len;
+		v.z /= len;
+	}
 	return (v);
 }
