@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:47:44 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/20 20:57:49 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:44:19 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,6 @@ typedef struct s_light
 	float	bright_ratio; // 0 to 1
 	t_vec3f	rgb; // from 0 to 255
 }			t_light;
-
-typedef struct s_scene
-{
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_light		*light;
-}				t_scene;
 
 typedef struct s_sphere
 {
@@ -120,5 +113,14 @@ typedef struct s_framebuffer
 {
 	t_intersect		*intersections[WIN_WIDTH * WIN_HEIGHT];
 }	t_framebuffer;
+
+typedef struct s_scene
+{
+	t_ambient		*ambient;
+	t_camera		*camera;
+	t_light			*light;
+	t_object		*objects;
+	t_framebuffer	fb;
+}				t_scene;
 
 #endif
