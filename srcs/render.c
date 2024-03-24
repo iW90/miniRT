@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:23:33 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/23 20:43:16 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:13:07 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_ray	get_ray(float x_coord_on_viewplane, float y_coord_on_viewplane)
 	return (ray);
 }
 
-void	process_rays(float vp_height, float vp_width, t_intersect *inters)
+void	process_rays(float vp_height, float vp_width, t_intersect **inters)
 {
 	int		x;
 	int		y;
@@ -52,13 +52,15 @@ void	process_rays(float vp_height, float vp_width, t_intersect *inters)
 
 void	render_scene(t_scene *scene)
 {
-	float			aspect_ratio;
-	float			view_plane_height;
-	float			view_plane_width;
+	float		aspect_ratio;
+	float		view_plane_height;
+	float		view_plane_width;
+	t_camera	*cam;
 
 	ft_memset(scene->fb.intersections, 0, sizeof(scene->fb.intersections));
+	cam = get_scene()->camera;
 	aspect_ratio = (float)WIN_WIDTH / (float)WIN_HEIGHT;
 	view_plane_height = 2.0f * tan((cam->horiz_fov * M_PI / 180.0f) / 2.0f);
 	view_plane_width = view_plane_height * aspect_ratio;
-	process_rays(view_plane_height, view_plane_width, fb.intersections);
+	process_rays(view_plane_height, view_plane_width, scene->fb.intersections);
 }

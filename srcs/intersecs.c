@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:51:28 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/23 20:24:50 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:56:23 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t)
 {
 	float		t0;
 	float		t1;
-	t_vec3f		to_center;
 	t_vec3f		coefs;
 
 	quadratic_calc(ray, sphere->coords, sphere->diameter / 2.0f, &coefs);

@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 10:53:19 by maalexan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:46:25 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:57:02 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ void	close_hook(void *param)
 
 	mlx = param;
 	mlx_close_window(mlx);
+}
+
+void	exit_program(int code)
+{
+	exit(code);
 }

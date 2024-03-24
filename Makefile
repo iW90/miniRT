@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2023/11/25 10:55:10 by maalexan         ###   ########.fr        #
+#    Updated: 2024/03/23 20:55:02 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,12 @@ LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 # Source files
 FUN			:=	main.c \
 				exit_hook.c \
+				intersecs.c \
+				object_list.c \
+				ray_cast.c \
+				render.c \
+				util_math.c \
+				vec3f.c
 
 # Object files
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)
