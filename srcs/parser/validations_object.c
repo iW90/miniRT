@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   validations_object.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:01:15 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 22:26:15 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:12:02 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_obj	*new_object(void)
+static t_object	*new_object(t_type type)
 {
-	t_obj	*object;
-	t_obj	*last;
+	t_object	*object;
+	t_object	*last;
 
-	object = malloc(sizeof(t_obj));
+	object = malloc(sizeof(t_object));
 	if (!object)
 		print_error(12);
-	*object = (t_obj){0};
-	if (!get_scene()->objs)
-		get_scene()->objs = object;
+	object->type = type;
+	object->next = NULL;
+	if (!get_scene()->objects)
+		get_scene()->objects = object;
 	else
 	{
-		last = get_scene()->objs;
+		last = get_scene()->objects;
 		while (last->next)
 			last = last->next;
 		last->next = object;
@@ -35,61 +36,67 @@ static t_obj	*new_object(void)
 
 void	validate_sphere(char *line)
 {
-	int		i;
-	t_obj	*object;
+	int			i;
+	t_sphere	*sphere;
+	t_object	*object;
 
-	if (line[1] != 'p')
-		print_error(-2);
-	object = new_object();
 	i = 2;
-	object->type = SP;
+	sphere = malloc(sizeof(t_sphere));
+	if (!sphere)
+		print_error(12);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &object->cds[3], FALSE);
+	sphere->coords = get_xyz(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	object->dia = get_double_number(line, &i, DBL_MIN, DBL_MAX);
+	sphere->diameter = get_float_number(line, &i, FLT_MIN, FLT_MAX);
 	validate_space(line, &i, TRUE);
-	get_rgb(line, &i, &object->rgb[3]);
+	sphere->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
+	object = new_object(SPHERE);
+	object->data.sphere = sphere;
 }
 
 void	validate_plane(char *line)
 {
-	int		i;
-	t_obj	*object;
+	int			i;
+	t_plane		*plane;
+	t_object	*object;
 
-	if (line[1] != 'l')
-		print_error(-2);
-	object = new_object();
 	i = 2;
-	object->type = PL;
+	plane = malloc(sizeof(t_plane));
+	if (!plane)
+		print_error(12);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &object->cds[3], FALSE);
+	plane->coords = get_xyz(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &object->vts[3], TRUE);
+	plane->norm_vector = get_xyz(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
-	get_rgb(line, &i, &object->rgb[3]);
+	plane->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
+	object = new_object(PLANE);
+	object->data.plane = plane;
 }
 
 void	validate_cylinder(char *line)
 {
-	int		i;
-	t_obj	*object;
+	int			i;
+	t_cylinder	*cylinder;
+	t_object	*object;
 
-	if (line[1] != 'y')
-		print_error(-2);
-	object = new_object();
 	i = 2;
-	object->type = CY;
+	cylinder = malloc(sizeof(t_cylinder));
+	if (!cylinder)
+		print_error(12);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &object->cds[3], FALSE);
+	cylinder->coords = get_xyz(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &object->vts[3], TRUE);
+	cylinder->norm_vector = get_xyz(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
-	object->dia = get_double_number(line, &i, DBL_MIN, DBL_MAX);
+	cylinder->diameter = get_float_number(line, &i, FLT_MIN, FLT_MAX);
 	validate_space(line, &i, TRUE);
-	object->hgt = get_double_number(line, &i, DBL_MIN, DBL_MAX);
+	cylinder->height = get_float_number(line, &i, FLT_MIN, FLT_MAX);
 	validate_space(line, &i, TRUE);
-	get_rgb(line, &i, &object->rgb[3]);
+	cylinder->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
+	object = new_object(CYLINDER);
+	object->data.cylinder = cylinder;
 }

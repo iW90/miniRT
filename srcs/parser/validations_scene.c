@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations_scene.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:00:32 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 21:58:58 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:57:18 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,62 @@
 
 void	validate_ambient(char *line)
 {
-	int		i;
-	t_amb	*ambient;
+	t_ambient	*ambient;
+	int			i;
 
-	if (get_scene()->a)
+	i = 1;
+	if (get_scene()->ambient)
 		print_error(-2);
-	ambient = malloc(sizeof(t_amb));
+	ambient = malloc(sizeof(t_ambient));
 	if (!ambient)
 		print_error(12);
-	get_scene()->a = ambient;
-	i = 1;
+	get_scene()->ambient = ambient;
 	validate_space(line, &i, TRUE);
-	ambient->rat = get_double_number(line, &i, 0.0, 1.0);
+	ambient->ratio = get_float_number(line, &i, 0.0, 1.0);
 	validate_space(line, &i, TRUE);
-	get_rgb(line, &i, &ambient->rgb[3]);
+	ambient->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
 }
 
 void	validate_camera(char *line)
 {
-	int		i;
-	t_cam	*camera;
+	t_camera	*camera;
+	int			i;
 
-	if (get_scene()->c)
+	i = 1;
+	if (get_scene()->camera)
 		print_error(-2);
-	camera = malloc(sizeof(t_cam));
+	camera = malloc(sizeof(t_camera));
 	if (!camera)
 		print_error(12);
-	get_scene()->c = camera;
-	i = 1;
+	get_scene()->camera = camera;
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &camera->cds[3], FALSE);
+	camera->coords = get_xyz(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &camera->vts[3], TRUE);
+	camera->norm_vector = get_xyz(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
-	camera->fov = get_int_number(line, &i, 0, 180);
+	camera->horiz_fov = get_int_number(line, &i, 0, 180);
 	validate_space(line, &i, FALSE);
 }
 
 void	validate_light(char *line)
 {
+	t_light	*light;
 	int		i;
-	t_lgt	*light;
-
-	if (get_scene()->l)
+	
+	i = 1;
+	if (get_scene()->light)
 		print_error(-2);
-	light = malloc(sizeof(t_lgt));
+	light = malloc(sizeof(t_light));
 	if (!light)
 		print_error(12);
-	get_scene()->l = light;
-	i = 1;
+	get_scene()->light = light;
+
 	validate_space(line, &i, TRUE);
-	get_xyz(line, &i, &light->cds[3], FALSE);
+	light->coords = get_xyz(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	light->bri = get_double_number(line, &i, 0.0, 1.0);
+	light->bright_ratio = get_float_number(line, &i, 0.0, 1.0);
 	validate_space(line, &i, TRUE);
-	get_rgb(line, &i, &light->rgb[3]);
+	light->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
 }

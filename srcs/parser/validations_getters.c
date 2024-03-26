@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validations_getters.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 21:36:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:29:15 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	get_rgb_number(char *line, int *i, int color)
+static float	get_rgb_component(char *line, int *i)
 {
 	int	number;
 
@@ -20,36 +20,49 @@ static int	get_rgb_number(char *line, int *i, int color)
 	if (number < 0 || number > 255)
 		print_error(-2);
 	while (ft_isdigit(line[*i]))
-		i++;
-	if (color < 2 && line[*i] != ',')
+		(*i)++;
+	if (line[*i] != ',' && line[*i] != '\0')
 		print_error(-2);
-	return (number);
+	if (line[*i] == ',')
+		(*i)++;
+	return ((float)number);
 }
 
-void	get_rgb(char *line, int *i, int *rgb)
+t_vec3f	get_rgb(char *line, int *i)
 {
-	rgb[R] = get_rgb_number(line, i, R);
-	rgb[G] = get_rgb_number(line, i, G);
-	rgb[B] = get_rgb_number(line, i, B);
+	t_vec3f	rgb;
+
+	rgb.x = get_rgb_component(line, i);
+	rgb.y = get_rgb_component(line, i);
+	rgb.z = get_rgb_component(line, i);
+/*	rgb.x = rgb.x / 255.0f;
+	rgb.y = rgb.y / 255.0f; This is for normalizing
+	rgb.z = rgb.z / 255.0f; */
+	return (rgb);
 }
 
-static double	get_xyz_number(char *line, int *i, int axis, int vts)
+static float	get_xyz_component(char *line, int *i, int vts)
 {
-	double	number;
+	float	number;
 
 	number = ft_atof(&line[*i]);
 	if (vts && (number < -1.0 || number > 1.0))
 		print_error(-2);
-	while (ft_isdigit(line[*i]))
-		i++;
-	if (axis < 2 && line[*i] != ',')
+	while (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-')
+		(*i)++;
+	if (line[*i] != ',' && line[*i] != '\0')
 		print_error(-2);
+	if (line[*i] == ',')
+		(*i)++;
 	return (number);
 }
 
-void	get_xyz(char *line, int *i, double *xyz, int vts)
+t_vec3f	get_xyz(char *line, int *i, int vts)
 {
-	xyz[X] = get_xyz_number(line, i, X, vts);
-	xyz[Y] = get_xyz_number(line, i, Y, vts);
-	xyz[Z] = get_xyz_number(line, i, Z, vts);
+	t_vec3f	xyz;
+
+	xyz.x = get_xyz_component(line, i, vts);
+	xyz.y = get_xyz_component(line, i, vts);
+	xyz.z = get_xyz_component(line, i, vts);
+	return (xyz);
 }

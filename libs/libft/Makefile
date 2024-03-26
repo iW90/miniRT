@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 17:06:10 by inwagner          #+#    #+#              #
-#    Updated: 2023/11/17 19:50:19 by maalexan         ###   ########.fr        #
+#    Updated: 2024/03/25 19:29:41 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ FTS		:=	ft_abs.c \
 			ft_substr.c \
 			ft_tolower.c \
 			ft_toupper.c \
+			get_next_line.c
 
 OBJ		:=	$(addprefix $(OSRC), $(FTS:.c=.o))
 

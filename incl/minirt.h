@@ -6,13 +6,15 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/23 21:11:18 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:27:30 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include <fcntl.h>
+# include <float.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -48,6 +50,7 @@ mlx_image_t *render(void);
 
 t_scene	*get_scene(void);
 void	exit_program(int code);
+void    print_error(int code);
 
 t_bool	intersect_plane(t_ray r, t_plane *plane, float *t);
 t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t);
@@ -56,5 +59,22 @@ t_bool	intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t);
 t_intersect	*cast_ray(t_ray ray, t_object *objects);
 
 void	add_intersection(t_intersect **head, t_ray ray, t_object *obj, float t);
+
+/*
+Validat
+*/
+
+void	validate_ambient(char *line);
+void	validate_camera(char *line);
+void	validate_light(char *line);
+void	validate_sphere(char *line);
+void    validate_plane(char *line);
+void	validate_cylinder(char *line);
+
+float	get_float_number(char *line, int *i, float min, float max);
+int     get_int_number(char *line, int *i, int min, int max);
+void	validate_space(char *line, int *i, int next);
+t_vec3f	get_rgb(char *line, int *i);
+t_vec3f	get_xyz(char *line, int *i, int vts);
 
 #endif

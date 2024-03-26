@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:06:57 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/12 22:18:36 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:29:49 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	validate_space(char *line, int *i, int next)
 		print_error(-2);
 }
 
-double	get_double_number(char *line, int *i, double min, double max)
+float	get_float_number(char *line, int *i, float min, float max)
 {
-	double	number;
+	float	number;
 
 	if (!ft_isdigit(line[*i]) && line[*i] != '.')
 		print_error(-2);
