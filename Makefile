@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/03/25 21:17:05 by maalexan         ###   ########.fr        #
+#    Updated: 2024/03/25 21:48:40 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 # Source files
 FUN			:=	main.c \
 				etcs/exit_hook.c \
+				etcs/exit_program.c \
 				etcs/object_list.c \
 				render/color.c \
 				render/intersecs.c \

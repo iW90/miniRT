@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 17:06:10 by inwagner          #+#    #+#              #
-#    Updated: 2024/03/25 19:29:41 by maalexan         ###   ########.fr        #
+#    Updated: 2024/03/25 21:45:43 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OSRC	:=	./objs/
 # MANDATORY
 FTS		:=	ft_abs.c \
 			ft_atoi.c \
+			ft_atof.c \
 			ft_atol.c \
 			ft_bzero.c \
 			ft_calloc.c \

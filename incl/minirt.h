@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/25 21:27:30 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:47:02 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_vec3f	ray_point_at(t_ray ray, float t);
 mlx_image_t *render(void);
 
 t_scene	*get_scene(void);
+void	print_error(int errn);
 void	exit_program(int code);
-void    print_error(int code);
 
 t_bool	intersect_plane(t_ray r, t_plane *plane, float *t);
 t_bool	intersect_sphere(t_ray ray, t_sphere *sphere, float *t);

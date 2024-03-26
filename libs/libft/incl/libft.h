@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:03:22 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/25 19:31:27 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:45:20 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		ft_strcmp(const char *str1, const char *str2);
 size_t	ft_abs(int n);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
+float	ft_atof(const char *str);
 long	ft_atol(const char *str);
 
 // Memory
