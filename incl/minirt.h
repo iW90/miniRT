@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/25 21:47:02 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:35:33 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	validate_sphere(char *line);
 void    validate_plane(char *line);
 void	validate_cylinder(char *line);
 
+
+int     apply_validations(int argc, char **argv);
 float	get_float_number(char *line, int *i, float min, float max);
 int     get_int_number(char *line, int *i, int min, int max);
 void	validate_space(char *line, int *i, int next);
