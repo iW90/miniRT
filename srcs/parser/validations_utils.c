@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:06:57 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/25 21:29:49 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:07:08 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	validate_space(char *line, int *i, int next)
 {
-	while (ft_isspace(line[*i]))
-		i++;
+	while (line[*i] && ft_isspace(line[*i]))
+		(*i)++;
+	if (line[*i] == '\0')
+		print_error(-2);
 	if ((next && !ft_isdigit(line[*i])) || \
 		(!next && (line[*i] != '\n' || line[*i])))
 		print_error(-2);
@@ -29,7 +31,7 @@ float	get_float_number(char *line, int *i, float min, float max)
 		print_error(-2);
 	number = ft_atof(&line[*i]);
 	while (ft_isdigit(line[*i]) || line[*i] == '.')
-		i++;
+		(*i)++;
 	if (number < min || number > max)
 		print_error(-2);
 	return (number);
@@ -43,7 +45,7 @@ int	get_int_number(char *line, int *i, int min, int max)
 		print_error(-2);
 	number = ft_atoi(&line[*i]);
 	while (ft_isdigit(line[*i]))
-		i++;
+		(*i)++;
 	if (number < min || number > max)
 		print_error(-2);
 	return (number);
