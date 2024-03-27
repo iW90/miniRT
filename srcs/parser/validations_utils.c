@@ -6,12 +6,12 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:06:57 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/26 21:07:08 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:38:21 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
+//error is here on the ambient
 void	validate_space(char *line, int *i, int next)
 {
 	while (line[*i] && ft_isspace(line[*i]))
