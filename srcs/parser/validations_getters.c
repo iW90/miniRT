@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 14:00:04 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:07:31 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ static float	get_coords_component(char *line, int *i, int vts)
 
 t_vec3f	get_coords(char *line, int *i, int vts)
 {
-	t_vec3f	xyz;
+	t_vec3f	coords;
 
-	xyz.x = get_coords_component(line, i, vts);
-	xyz.y = get_coords_component(line, i, vts);
-	xyz.z = get_coords_component(line, i, vts);
-	return (xyz);
+	coords.x = get_coords_component(line, i, vts);
+	coords.y = get_coords_component(line, i, vts);
+	coords.z = get_coords_component(line, i, vts);
+	return (coords);
 }
