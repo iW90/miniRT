@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/26 21:31:58 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:00:04 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vec3f	get_rgb(char *line, int *i)
 	return (rgb);
 }
 
-static float	get_xyz_component(char *line, int *i, int vts)
+static float	get_coords_component(char *line, int *i, int vts)
 {
 	float	number;
 
@@ -57,12 +57,12 @@ static float	get_xyz_component(char *line, int *i, int vts)
 	return (number);
 }
 
-t_vec3f	get_xyz(char *line, int *i, int vts)
+t_vec3f	get_coords(char *line, int *i, int vts)
 {
 	t_vec3f	xyz;
 
-	xyz.x = get_xyz_component(line, i, vts);
-	xyz.y = get_xyz_component(line, i, vts);
-	xyz.z = get_xyz_component(line, i, vts);
+	xyz.x = get_coords_component(line, i, vts);
+	xyz.y = get_coords_component(line, i, vts);
+	xyz.z = get_coords_component(line, i, vts);
 	return (xyz);
 }

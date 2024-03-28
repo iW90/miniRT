@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:01:15 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/25 21:12:02 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:59:36 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	validate_sphere(char *line)
 	if (!sphere)
 		print_error(12);
 	validate_space(line, &i, TRUE);
-	sphere->coords = get_xyz(line, &i, FALSE);
+	sphere->coords = get_coords(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
 	sphere->diameter = get_float_number(line, &i, FLT_MIN, FLT_MAX);
 	validate_space(line, &i, TRUE);
@@ -66,9 +66,9 @@ void	validate_plane(char *line)
 	if (!plane)
 		print_error(12);
 	validate_space(line, &i, TRUE);
-	plane->coords = get_xyz(line, &i, FALSE);
+	plane->coords = get_coords(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	plane->norm_vector = get_xyz(line, &i, TRUE);
+	plane->norm_vector = get_coords(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
 	plane->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
@@ -87,9 +87,9 @@ void	validate_cylinder(char *line)
 	if (!cylinder)
 		print_error(12);
 	validate_space(line, &i, TRUE);
-	cylinder->coords = get_xyz(line, &i, FALSE);
+	cylinder->coords = get_coords(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	cylinder->norm_vector = get_xyz(line, &i, TRUE);
+	cylinder->norm_vector = get_coords(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
 	cylinder->diameter = get_float_number(line, &i, FLT_MIN, FLT_MAX);
 	validate_space(line, &i, TRUE);

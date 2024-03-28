@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:00:32 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/26 21:37:53 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:02:45 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	validate_camera(char *line)
 		print_error(12);
 	get_scene()->camera = camera;
 	validate_space(line, &i, TRUE);
-	camera->coords = get_xyz(line, &i, FALSE);
+	camera->coords = get_coords(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
-	camera->norm_vector = get_xyz(line, &i, TRUE);
+	camera->norm_vector = get_coords(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
 	camera->horiz_fov = get_int_number(line, &i, 0, 180);
 	validate_space(line, &i, FALSE);
@@ -64,9 +64,8 @@ void	validate_light(char *line)
 	if (!light)
 		print_error(12);
 	get_scene()->light = light;
-
 	validate_space(line, &i, TRUE);
-	light->coords = get_xyz(line, &i, FALSE);
+	light->coords = get_coords(line, &i, FALSE);
 	validate_space(line, &i, TRUE);
 	light->bright_ratio = get_float_number(line, &i, 0.0, 1.0);
 	validate_space(line, &i, TRUE);
