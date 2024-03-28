@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:58:39 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/26 20:36:13 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:18:19 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	validate_file(char *argv)
 {
 	int		fd;
 	char	*line;
+	char	*parsed;
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
@@ -43,9 +44,10 @@ void	validate_file(char *argv)
 	line = get_next_line(fd);
 	while (line)
 	{
-		while (ft_isspace(*line))
-			line++;
-		parse_validations(line);
+		parsed = line;
+		while (ft_isspace(*parsed))
+			parsed++;
+		parse_validations(parsed);
 		free(line);
 		line = get_next_line(fd);
 	}

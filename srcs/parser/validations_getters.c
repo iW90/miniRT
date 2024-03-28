@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 14:27:30 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:42:40 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ t_vec3f	get_rgb(char *line, int *i)
 	return (rgb);
 }
 
+static t_bool valid_chars(char c)
+{
+	if (ft_isdigit(c))
+		return (TRUE);
+	if (ft_isspace(c))
+		return (TRUE);
+	if (c == ',')
+		return (TRUE);
+	if (c == '-')
+		return (TRUE);
+	if (c == '.')
+		return (TRUE);
+	return (FALSE);
+}
+
 static float	get_coords_component(char *line, int *i, int normalized)
 {
 	float	number;
@@ -48,9 +63,11 @@ static float	get_coords_component(char *line, int *i, int normalized)
 	number = ft_atof(&line[*i]);
 	if (normalized && (number < -1.0 || number > 1.0))
 		print_error(-2);
-	while (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-')
+	if (line[*i] == '-')
 		(*i)++;
-	if (line[*i] != ',' && line[*i] != '\0')
+	while (ft_isdigit(line[*i]) || line[*i] == '.')
+		(*i)++;
+	if (!valid_chars(line[*i]))
 		print_error(-2);
 	if (line[*i] == ',')
 		(*i)++;
