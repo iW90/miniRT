@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:06:57 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 13:57:06 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:14:08 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	validate_space(char *line, int *i, int next)
 	while (line[*i] && ft_isspace(line[*i]))
 		(*i)++;
 	if (next)
-		if (!line[*i] || !ft_isdigit(line[*i]))
+		if (!line[*i] || (!ft_isdigit(line[*i]) && line[*i] != '-'))
 			print_error(-2);
 	if (!next)
 		if (line[*i] && line[*i] != '\n')

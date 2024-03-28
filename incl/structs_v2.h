@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_v2.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:00:54 by inwagner          #+#    #+#             */
-/*   Updated: 2023/12/10 12:37:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:27:30 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_ambient //identifier A - example:	A 0.2	255,255,255
 typedef struct s_camera //identifier C - example: C -50.0,0,20	0,0,1	70
 {
 	double	cds[3];
-	double	vts[3];
+	double	normalized[3];
 	int		fov; // from 0 to 180
 }			t_cam;
 
@@ -62,7 +62,7 @@ typedef struct s_object
 {
 	t_type		type;
 	double		cds[3];
-	double		vts[3];
+	double		normalized[3];
 	double		dia;
 	double		hgt;
 	int			rgb[3];

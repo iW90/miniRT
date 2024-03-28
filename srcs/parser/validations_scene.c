@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:00:32 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 14:02:45 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:18:55 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	validate_camera(char *line)
 		print_error(12);
 	get_scene()->camera = camera;
 	validate_space(line, &i, TRUE);
+	printf("camin\n");
 	camera->coords = get_coords(line, &i, FALSE);
+	printf("camcords\n");
 	validate_space(line, &i, TRUE);
 	camera->norm_vector = get_coords(line, &i, TRUE);
 	validate_space(line, &i, TRUE);
@@ -56,7 +58,7 @@ void	validate_light(char *line)
 {
 	t_light	*light;
 	int		i;
-	
+	printf("lightsin\n");
 	i = 1;
 	if (get_scene()->light)
 		print_error(-2);
@@ -71,4 +73,5 @@ void	validate_light(char *line)
 	validate_space(line, &i, TRUE);
 	light->rgb = get_rgb(line, &i);
 	validate_space(line, &i, FALSE);
+	printf("lightsout\n");
 }

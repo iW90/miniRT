@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 14:07:31 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:27:30 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_vec3f	get_rgb(char *line, int *i)
 	return (rgb);
 }
 
-static float	get_coords_component(char *line, int *i, int vts)
+static float	get_coords_component(char *line, int *i, int normalized)
 {
 	float	number;
 
 	number = ft_atof(&line[*i]);
-	if (vts && (number < -1.0 || number > 1.0))
+	if (normalized && (number < -1.0 || number > 1.0))
 		print_error(-2);
 	while (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-')
 		(*i)++;
@@ -57,12 +57,12 @@ static float	get_coords_component(char *line, int *i, int vts)
 	return (number);
 }
 
-t_vec3f	get_coords(char *line, int *i, int vts)
+t_vec3f	get_coords(char *line, int *i, int normalized)
 {
 	t_vec3f	coords;
 
-	coords.x = get_coords_component(line, i, vts);
-	coords.y = get_coords_component(line, i, vts);
-	coords.z = get_coords_component(line, i, vts);
+	coords.x = get_coords_component(line, i, normalized);
+	coords.y = get_coords_component(line, i, normalized);
+	coords.z = get_coords_component(line, i, normalized);
 	return (coords);
 }

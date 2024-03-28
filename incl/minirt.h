@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/28 13:59:36 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:27:30 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ float	get_float_number(char *line, int *i, float min, float max);
 int     get_int_number(char *line, int *i, int min, int max);
 void	validate_space(char *line, int *i, int next);
 t_vec3f	get_rgb(char *line, int *i);
-t_vec3f	get_coords(char *line, int *i, int vts);
+t_vec3f	get_coords(char *line, int *i, int normalized);
 
 #endif
