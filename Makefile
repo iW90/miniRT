@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/03/25 21:48:40 by maalexan         ###   ########.fr        #
+#    Updated: 2024/03/29 14:07:39 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ FUN			:=	main.c \
 				parser/validations_object.c \
 				parser/validations_scene.c \
 				parser/validations_utils.c \
+				test/print_scene.c
 
 # Object files
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)
