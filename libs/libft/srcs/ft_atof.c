@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:40:55 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/25 21:44:04 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:29:44 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ float	ft_atof(const char *str)
 	if (*str == '-' || *str == '+')
 		str++;
 	result = (double)ft_atoi(str);
-	while (*str && *str != '.')
+	while (ft_isdigit(*str))
 		str++;
 	if (*str == '.')
 	{
