@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:02:57 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/26 20:36:42 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:10:25 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
 //	mlx_image_t	*image;
-//	t_scene		*scene;
+	t_scene		*scene;
 
 	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "miniRT", false);
 	if (!mlx)
 		return (1);
 	apply_validations(argc, argv);
-/*	scene = get_scene();
-	parse_scene(scene);
+	scene = get_scene();
+	print_scene(scene);
+/*	parse_scene(scene);
 	render_scene(scene);*/
 //	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, key_hook, mlx);
