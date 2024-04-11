@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 20:52:10 by maalexan          #+#    #+#             */
-/*   Updated: 2024/03/29 14:09:51 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:57:35 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_bool	intersect_cylinder(t_ray ray, t_cylinder *cylinder, float *t);
 t_intersect	*cast_ray(t_ray ray, t_object *objects);
 
 void	add_intersection(t_intersect **head, t_ray ray, t_object *obj, float t);
+
+int	    float_to_int_rgb(t_vec3f rgb);
 
 /*
 Validat

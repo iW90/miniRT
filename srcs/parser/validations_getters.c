@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 20:07:23 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/28 14:42:40 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:47:02 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_vec3f	get_rgb(char *line, int *i)
 	rgb.x = get_rgb_component(line, i);
 	rgb.y = get_rgb_component(line, i);
 	rgb.z = get_rgb_component(line, i);
-/*	rgb.x = rgb.x / 255.0f;
-	rgb.y = rgb.y / 255.0f; This is for normalizing
-	rgb.z = rgb.z / 255.0f; */
+	rgb.x = rgb.x / 255.0f;
+	rgb.y = rgb.y / 255.0f;
+	rgb.z = rgb.z / 255.0f;
 	return (rgb);
 }
 
