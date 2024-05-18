@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 10:43:50 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/16 02:31:35 by aqueiroz          #+#    #+#             */
+/*   Updated: 2024/05/18 11:18:59 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#ifndef WINDOW_H
+# define WINDOW_H
 
-int	main(int argc, char **argv)
+# include "./mlx/MLX42/MLX42.h"
+
+typedef struct s_mlx
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
-}
+	mlx_t				*mlx;
+	mlx_image_t			*image;
+	int					width;
+	int					height;
+}						t_mlx;
+
+void	init_resolution(void);
+void	window_loop(void);
+
+#endif

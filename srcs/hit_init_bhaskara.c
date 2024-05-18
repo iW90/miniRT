@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hit_init_bhaskara.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 10:43:50 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/16 03:39:32 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 10:41:58 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-int	main(int argc, char **argv)
+t_bhaskara	init_bhaskara(t_vector pj_ori_center,
+	t_vector v, double radius)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	t_bhaskara	bhaskara;
+
+	bhaskara.a = vector_length_sqd(v);
+	bhaskara.b = 2 * vector_dot(pj_ori_center, v);
+	bhaskara.c = vector_length_sqd(pj_ori_center) - radius * radius;
+	bhaskara.discr = bhaskara.b * bhaskara.b - 4 * bhaskara.a * bhaskara.c;
+	return (bhaskara);
 }

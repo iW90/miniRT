@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hit_set_normal_face.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 10:43:50 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/16 03:27:12 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 10:43:15 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-int	main(int argc, char **argv)
+void	set_face_normal(t_hit_record *rec, t_ray *ray, t_vector *out_normal)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	rec->front_face = vector_dot(ray->direction, *out_normal) < 0;
+	if (rec->front_face)
+		rec->normal = *out_normal;
+	else
+		rec->normal = vector_negate_self(out_normal);
 }

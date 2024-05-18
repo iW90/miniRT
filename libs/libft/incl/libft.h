@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:03:22 by inwagner          #+#    #+#             */
-/*   Updated: 2024/03/25 21:45:20 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:24:10 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ char	*get_next_line(int fd);
 size_t	ft_strspn(const char *str, const char *charset);
 size_t	ft_strcspn(const char *str, const char *reject);
 char	*ft_strtok(char *str, const char *delimiters);
+int		ft_is_numeric_string(const char *str);
 
 #endif

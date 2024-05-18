@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 17:06:10 by inwagner          #+#    #+#              #
-#    Updated: 2024/03/25 21:45:43 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/18 11:37:13 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ FTS		:=	ft_abs.c \
 			ft_isspace.c \
 			ft_isupper.c \
 			ft_isxdigit.c \
+			ft_is_numeric_string.c \
 			ft_itoa.c \
 			ft_memchr.c \
 			ft_memcmp.c \
