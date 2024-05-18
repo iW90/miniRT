@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:39:35 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 17:45:04 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:49:22 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ static int	color_component_to_int(double component)
 	return (value);
 }
 
-static uint32_t	vec_to_rgb(t_vector *color)
+static uint32_t	vec_to_rgb(t_vector color)
 {
 	int	r;
 	int	g;
 	int	b;
 
-	color->x = clamp(color->x, 0.0, 1.0);
-	color->y = clamp(color->y, 0.0, 1.0);
-	color->z = clamp(color->z, 0.0, 1.0);
-	r = color_component_to_int(color->x);
-	g = color_component_to_int(color->y);
-	b = color_component_to_int(color->z);
+	color.x = clamp(color.x, 0.0, 1.0);
+	color.y = clamp(color.y, 0.0, 1.0);
+	color.z = clamp(color.z, 0.0, 1.0);
+	r = color_component_to_int(color.x);
+	g = color_component_to_int(color.y);
+	b = color_component_to_int(color.z);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
