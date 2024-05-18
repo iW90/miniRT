@@ -3,79 +3,67 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/22 00:31:29 by fsuomins          #+#    #+#              #
-#    Updated: 2024/03/16 04:10:02 by aqueiroz         ###   ########.fr        #
+#    Created: 2023/04/22 00:31:29 by maalexan          #+#    #+#              #
+#    Updated: 2024/05/18 11:59:03 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_GOAL := all
 
-## COLORS DEFINITIONS
-
-red:=$(shell tput setaf 1)
-green:=$(shell tput setaf 2)
-yellow:=$(shell tput setaf 3)
-blue:=$(shell tput setaf 4)
-purple:=$(shell tput setaf 5)
-cyan:=$(shell tput setaf 6)
-white:=$(shell tput setaf 7)
-reset:=$(shell tput sgr0)
-
-color:
-	@make -s _color-test
-
-_color-test:
-	$(info $(red)Message$(reset))
-	$(info $(green)Message$(reset))
-	$(info $(yellow)Message$(reset))
-	$(info $(blue)Message$(reset))
-	$(info $(purple)Message$(reset))
-	$(info $(cyan)Message$(reset))
-	$(info $(white)Message$(reset))
-
-# PATHS
-
-SRC_PATH = .
-TEST_PATH = tests
-PATH_INC = ./
-
-# FILES
-
-NAME = libvector.a
-FILES = vector_add vector_create vector_cross vector_diff vector_div_self \
-		vector_div vector_dot vector_lenght_squared vector_lenght \
-		vector_mult vector_mult_self vector_negate_self vector_product \
-		vector_project vector_reflect vector_sub \
-		vector_sum_self vector_sum vector_unit vector_is_equal normalize
-		
-SRCS = $(addprefix $(SRC_PATH)/, $(addsuffix .c, $(FILES)))
-OBJS := ${SRCS:.c=.o}
+# NAMES
+NAME	:=	libvector.a
 
 # FLAGS
+HDR		:=	-I ./incl/
+CFLAG	:=	-Wall -Wextra -Werror
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# PATHS
+SRC		:=	./srcs/
+OSRC	:=	./objs/
 
-# TARGETS
+# MANDATORY
+FTS		:=	normalize.c \
+			vector_add.c \
+			vector_create.c \
+			vector_cross.c \
+			vector_diff.c \
+			vector_div.c \
+			vector_div_self.c \
+			vector_dot.c \
+			vector_is_equal.c \
+			vector_lenght.c \
+			vector_lenght_squared.c \
+			vector_mult.c \
+			vector_mult_self.c \
+			vector_negate_self.c \
+			vector_product.c \
+			vector_project.c \
+			vector_reflect.c \
+			vector_sub.c \
+			vector_sum.c \
+			vector_sum_self.c \
+			vector_unit.c \
 
+OBJ		:=	$(addprefix $(OSRC), $(FTS:.c=.o))
+
+# cmds
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
+# Compile Objects
+$(NAME): $(OBJ)
+	@ar -rcs ../$(NAME) $(OBJ)
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-valgrind:
-	valgrind --track-origins=yes --error-exitcode=42 --leak-check=full --show-leak-kinds=all --quiet ./test
+# Make Objects
+$(OSRC)%.o: $(SRC)%.c
+	@mkdir -p objs
+	@cc $(CFLAG) $(HDR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
+	@[ -d $(OSRC) ] && rm -rf $(OSRC) || [ -f Makefile ]
 
-fclean: clean
-	@rm -f $(NAME)
+fclean:	clean
+	@[ -f ../$(NAME) ] && rm ../$(NAME) && echo $(NAME) cleaned ||  [ -f Makefile ]
 
 re: fclean all
 

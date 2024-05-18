@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_mult.c                                      :+:      :+:    :+:   */
+/*   vector_is_equal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:28:20 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:32:22 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/16 02:52:13 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	vector_mult(t_vector vector, double value)
+int	vector_is_equal(t_vector v1, t_vector v2)
 {
-	t_vector	new;
-
-	new.x = vector.x * value;
-	new.y = vector.y * value;
-	new.z = vector.z * value;
-	return (new);
+	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+		return (1);
+	return (0);
 }

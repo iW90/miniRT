@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_mult_self.c                                 :+:      :+:    :+:   */
+/*   vector_lenght_squared.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:28:16 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:32:16 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:14 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	vector_mult_self(t_vector *vector, double value)
+double	vector_length_sqd(const t_vector vector)
 {
-	vector->x *= value;
-	vector->y *= value;
-	vector->z *= value;
-	return (*vector);
+	return ((vector.x * vector.x)
+		+ (vector.y * vector.y)
+		+ (vector.z * vector.z));
 }

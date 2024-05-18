@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 15:29:43 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/05/18 11:16:43 by maalexan         ###   ########.fr       */
+/*   Created: 2023/11/18 15:29:43 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
-# include "../libs/libvec/libvector.h"
+# include "../libs/libvec/incl/libvector.h"
 
 typedef enum e_shape
 {

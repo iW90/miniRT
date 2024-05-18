@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_unit.c                                      :+:      :+:    :+:   */
+/*   vector_project.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:28:52 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:34:33 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:29 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	vector_unit(t_vector vector)
+t_vector	vector_project(t_vector v, t_vector n)
 {
-	return (vector_div(vector, vector_length(vector)));
+	t_vector	n_scaled;
+	double		dot_product;
+
+	dot_product = vector_dot(v, n);
+	n_scaled = vector_mult(n, dot_product);
+	return (vector_diff(v, n_scaled));
 }

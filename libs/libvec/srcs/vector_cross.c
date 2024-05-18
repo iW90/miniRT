@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_add.c                                       :+:      :+:    :+:   */
+/*   vector_cross.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:19:06 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:38:17 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:27:49 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	vector_add(t_vector vector, double value)
+t_vector	vector_cross(t_vector u, t_vector v)
 {
-	t_vector	new;
-
-	new.x = vector.x + value;
-	new.y = vector.y + value;
-	new.z = vector.z + value;
-	return (new);
+	return (vector_create(u.y * v.z - u.z * v.y,
+			u.z * v.x - u.x * v.z,
+			u.x * v.y - u.y * v.x));
 }

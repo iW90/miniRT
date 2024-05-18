@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 02:42:45 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/05/18 10:51:08 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/16 02:42:45 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include "../libs/libvec/libvector.h"
+# include "../libs/libvec/incl/libvector.h"
 # include "scene.h"
 
 # define AMBIENT 0

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 12:24:08 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/05/18 11:30:04 by maalexan         ###   ########.fr       */
+/*   Created: 2023/10/11 12:24:08 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "../libs/libft/incl/libft.h"
-# include "../libs/libvec/libvector.h"
+# include "../libs/libvec/incl/libvector.h"
 # include "definitions.h"
 # include "hit.h"
 # include "objects.h"

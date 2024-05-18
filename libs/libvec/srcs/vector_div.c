@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_length_squared.c                            :+:      :+:    :+:   */
+/*   vector_div.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:28:14 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:31:18 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:04 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-double	vector_length_sqd(const t_vector vector)
+t_vector	vector_div(t_vector vector, double value)
 {
-	return ((vector.x * vector.x)
-		+ (vector.y * vector.y)
-		+ (vector.z * vector.z));
+	t_vector	new;
+
+	new.x = vector.x / value;
+	new.y = vector.y / value;
+	new.z = vector.z / value;
+	return (new);
 }

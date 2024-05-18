@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_diff.c                                      :+:      :+:    :+:   */
+/*   vector_div_self.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:27:57 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:29:55 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:01 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	vector_diff(t_vector u, t_vector v)
+t_vector	vector_div_self(t_vector *vector, double value)
 {
-	t_vector	new;
-
-	new.x = u.x - v.x;
-	new.y = u.y - v.y;
-	new.z = u.z - v.z;
-	return (new);
+	vector->x /= value;
+	vector->y /= value;
+	vector->z /= value;
+	return (*vector);
 }

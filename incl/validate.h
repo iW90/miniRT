@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:57:37 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/16 15:37:24 by fsuomins         ###   ########.fr       */
+/*   Created: 2024/03/15 22:57:37 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

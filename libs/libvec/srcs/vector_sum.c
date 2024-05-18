@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize.c                                        :+:      :+:    :+:   */
+/*   vector_sum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 03:10:33 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/16 03:10:38 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:42 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector	normalize(t_vector vector)
+t_vector	vector_sum(t_vector vector, t_vector add)
 {
-	t_vector	result;
-	double		length;
+	t_vector	new;
 
-	length = vector_length(vector);
-	if (length == 0)
-		return (vector);
-	result.x = vector.x / length;
-	result.y = vector.y / length;
-	result.z = vector.z / length;
-	return (result);
+	new.x = vector.x + add.x;
+	new.y = vector.y + add.y;
+	new.z = vector.z + add.z;
+	return (new);
 }

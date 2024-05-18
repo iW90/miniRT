@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libvector.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 14:52:57 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/16 03:10:56 by aqueiroz         ###   ########.fr       */
+/*   Created: 2023/11/14 14:52:57 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

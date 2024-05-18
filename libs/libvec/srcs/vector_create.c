@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_dot.c                                       :+:      :+:    :+:   */
+/*   vector_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 22:28:07 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/15 22:30:49 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:22:19 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-double	vector_dot(t_vector u, t_vector v)
+t_vector	vector_create(double x, double y, double z)
 {
-	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
+	t_vector new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	return (new);
 }

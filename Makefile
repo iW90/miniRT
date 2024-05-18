@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/05/18 11:33:25 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/18 11:57:46 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ HDR_DIR		:=	./incl
 FTLIB_DIR	:=	./libs/libft
 FTLIB		:=	./libs/libft.a
 MLXLIB		:=	./libs/libmlx42.a
+VECLIB_DIR	:=	./libs/libvec
 VECLIB		:=  ./libs/libvector.a
 
 # Compilation flags
@@ -80,6 +81,9 @@ $(NAME): $(MLXLIB) $(FTLIB) $(VECLIB) $(OBJ)
 $(FTLIB):
 	@$(MAKE) -C $(FTLIB_DIR) --silent
 
+$(VECLIB):
+	@$(MAKE) -C $(VECLIB_DIR) --silent
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	cc $(CFLAGS) -c $< -o $@
@@ -114,7 +118,7 @@ clean:
 
 fclean: clean
 	@$(MAKE) -C $(FTLIB_DIR) --silent fclean
-#	@[ -f $(MLXLIB) ] && rm $(MLXLIB) || [ -f Makefile ]
+	@[ -f $(MLXLIB) ] && rm $(MLXLIB) || [ -f Makefile ]
 	@[ -d ./incl/mlx ] && rm -rf ./incl/mlx || [ -f Makefile ]
 	@[ -f ./$(NAME) ] && rm $(NAME) || echo Program $(NAME) isn\'t compiled
 	@[ -f ./$(NAMEB) ] && rm $(NAMEB)|| echo Bonus $(NAMEB) isn\'t compiled

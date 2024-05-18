@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_is_equal.c                                  :+:      :+:    :+:   */
+/*   vector_negate_self.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aqueiroz <aqueiroz@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 02:52:13 by aqueiroz          #+#    #+#             */
-/*   Updated: 2024/03/16 02:52:18 by aqueiroz         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:23 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-int	vector_is_equal(t_vector v1, t_vector v2)
+t_vector	vector_negate_self(t_vector *vector)
 {
-	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
-		return (1);
-	return (0);
+	vector->x *= -1;
+	vector->y *= -1;
+	vector->z *= -1;
+	return (*vector);
 }
