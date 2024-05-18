@@ -6,52 +6,65 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:39:35 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 11:06:54 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:45:04 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-uint32_t	color_create_rgb(t_vector *color)
+static double	clamp(double value, double min, double max)
+{
+	if (value < min)
+		return (min);
+	if (value > max)
+		return (max);
+	return (value);
+}
+
+static int	color_component_to_int(double component)
+{
+	int	value;
+
+	value = (int)(component * 255.99);
+	if (value > 255)
+		return (255);
+	if (value < 0)
+		return (0);
+	return (value);
+}
+
+static uint32_t	vec_to_rgb(t_vector *color)
 {
 	int	r;
 	int	g;
 	int	b;
 
-	if (color->x > 1.0)
-		color->x = 1.0;
-	if (color->y > 1.0)
-		color->y = 1.0;
-	if (color->z > 1.0)
-		color->z = 1.0;
-	r = (int)(color->x * 255.99);
-	g = (int)(color->y * 255.99);
-	b = (int)(color->z * 255.99);
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	if (r < 0)
-		r = 0;
-	if (g < 0)
-		g = 0;
-	if (b < 0)
-		b = 0;
+	color->x = clamp(color->x, 0.0, 1.0);
+	color->y = clamp(color->y, 0.0, 1.0);
+	color->z = clamp(color->z, 0.0, 1.0);
+	r = color_component_to_int(color->x);
+	g = color_component_to_int(color->y);
+	b = color_component_to_int(color->z);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
-static t_ray	ray_constructor(t_camera *camera, t_vector normal)
+static t_ray	ray_constructor(t_camera *cam, t_vector normal)
 {
-	t_ray	new;
+	t_ray		new_ray;
+	t_vector	horiz_component;
+	t_vector	verti_component;
+	t_vector	viewport_point;
+	t_vector	direction;
 
-	new.origin = camera->origin;
-	new.direction = normalize(vector_diff(vector_sum(vector_sum(camera->viewport.lower_left_corner,
-						vector_mult(camera->viewport.horizontal, normal.x)),
-					vector_mult(camera->viewport.vertical, normal.y)),
-				camera->origin));
-	return (new);
+	horiz_component = vector_mult(cam->viewport.horizontal, normal.x);
+	verti_component = vector_mult(cam->viewport.vertical, normal.y);
+	viewport_point = vector_sum(\
+			vector_sum(cam->viewport.lower_left_corner, horiz_component), \
+			verti_component);
+	direction = normalize(vector_diff(viewport_point, cam->origin));
+	new_ray.origin = cam->origin;
+	new_ray.direction = direction;
+	return (new_ray);
 }
 
 void	render(void)
@@ -59,8 +72,8 @@ void	render(void)
 	t_vector	normal;
 	t_vector	loop;
 	t_ray		ray;
-	t_vector	color;
 	t_light		point_light;
+	uint32_t	rgb;
 
 	camera_on(&get_data()->camera);
 	point_light = get_data()->light;
@@ -74,9 +87,8 @@ void	render(void)
 			normal.x = (double)loop.x / (WIDTH - 1);
 			normal.y = (double)loop.y / (HEIGHT - 1);
 			ray = ray_constructor(&get_data()->camera, normal);
-			color = ray_color(ray, get_data()->objects, point_light);
-			mlx_put_pixel(get_data()->mlx.image, loop.x, loop.y,
-				color_create_rgb(&color));
+			rgb = vec_to_rgb(ray_color(ray, get_data()->objects, point_light));
+			mlx_put_pixel(get_data()->mlx.image, loop.x, loop.y, rgb);
 			loop.y++;
 		}
 		loop.x++;
