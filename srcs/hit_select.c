@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:49:05 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:43:01 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:01:11 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	set_hit_record(t_hit *hit, double rt, t_vector point)
 	hit->rec->t = rt;
 	hit->rec->point = point;
 }
-
 
 static void	calculate_points_heights(double rt[2],
 	t_hit *hit, t_vector p[2], double h[2])

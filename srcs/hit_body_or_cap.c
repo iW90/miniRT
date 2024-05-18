@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:43:31 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:41:23 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:21:10 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	hit_caps(t_cylinder c, t_ray *ray, t_variation t, t_hit_record *rec)
 	point_bt[1] = ray_at(*ray, t_bt[1]);
 	return (find_hit_result(hit, t_bt, point_bt));
 }
-
 
 int	body_or_cap(t_hit *hit, int body_hit)
 {

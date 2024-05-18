@@ -6,14 +6,13 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:48:00 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:18:28 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINITIONS_H
 # define DEFINITIONS_H
 
-//Colors
 # define COLOR_NO "\033[m"
 # define COLOR_RE "\033[0;31m"
 # define COLOR_RE_1 "\033[1;31m"
@@ -31,16 +30,13 @@
 # define COLOR_WH_1 "\033[1;37m"
 
 # define DEBUG 1
-//Windows
-# define ASPECT_RATIO 1.7777777777679
+
 # define WIDTH 1920
-// # define HEIGHT (WIDTH / ASPECT_RATIO)
 # define HEIGHT 1080
+# define ASPECT_RATIO 1.7777777777679
 
 # define PI 3.1415926535897932385
 
-
-//Math
 # define M_EPSILON 1e-6
 
 #endif

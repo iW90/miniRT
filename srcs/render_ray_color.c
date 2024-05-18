@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:13:38 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 11:07:06 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:02:46 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_material	get_material(t_object *world, int index)
 	return (material);
 }
 
-t_vector			ray_color(t_ray ray, t_object *world, t_light light)
+t_vector	ray_color(t_ray ray, t_object *world, t_light light)
 {
 	t_hit			hit;
 	int				in_shadow;

@@ -6,12 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:35:56 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:41:42 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:02:17 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
-
 
 int	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_variation t, t_hit_record *rec)
 {

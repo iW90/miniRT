@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:21:09 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:42:23 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:08:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	set_record(double *closest, t_hit_record *tr,
 	rec->index = index;
 	return (1);
 }
-
 
 int	hittable_list_hit(t_object *list, t_ray *ray,
 			t_variation t, t_hit_record *rec)

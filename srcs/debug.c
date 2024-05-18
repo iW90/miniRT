@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 15:08:07 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:41:00 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:07:34 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	print_objects(void)
 			print_plane(object->plane);
 		else if (object->shape == CYLINDER)
 			print_cylinder(object->cyl);
-
 		object = object->next;
 	}
 }
