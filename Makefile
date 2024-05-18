@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2023/11/25 10:55:10 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/18 11:57:46 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ HDR_DIR		:=	./incl
 FTLIB_DIR	:=	./libs/libft
 FTLIB		:=	./libs/libft.a
 MLXLIB		:=	./libs/libmlx42.a
+VECLIB_DIR	:=	./libs/libvec
+VECLIB		:=  ./libs/libvector.a
 
 # Compilation flags
 CC			:=	cc
@@ -29,8 +31,43 @@ BCFLAGS		:=	-Wall -Wextra -Werror -g -I ./bonus/incl
 LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 
 # Source files
-FUN			:=	main.c \
-				exit_hook.c \
+FUN			:=	debug.c \
+				hit_body_or_cap.c \
+				hit_cylinder.c \
+				hit_init_bhaskara.c \
+				hit_init.c \
+				hit_list_hittable.c \
+				hit_plane.c \
+				hit_record_update.c \
+				hit_select.c \
+				hit_set_normal_face.c \
+				hit_sphere.c \
+				main.c \
+				object_add.c \
+				object_ambient_light.c \
+				object_clear.c \
+				object_default_material.c \
+				render_camera_on.c \
+				render_core.c \
+				render_ray_at.c \
+				render_ray_color.c \
+				shadow_is.c \
+				shadow_lightning.c \
+				util_data.c \
+				util_print_header.c \
+				validate_ambient.c \
+				validate_args.c \
+				validate_camera.c \
+				validate_color.c \
+				validate_core.c \
+				validate_cylinder.c \
+				validate_free_split.c \
+				validate_light.c \
+				validate_orientation.c \
+				validate_plane.c \
+				validate_sphere.c \
+				window_init_resolution.c \
+				window_loop.c \
 
 # Object files
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)
@@ -38,11 +75,14 @@ BOBJ		:=	$(BFUN:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(MLXLIB) $(FTLIB) $(OBJ)
-	$(CC) $(OBJ) $(FTLIB) $(MLXLIB) $(LDFLAGS) -o $@
+$(NAME): $(MLXLIB) $(FTLIB) $(VECLIB) $(OBJ)
+	$(CC) $(OBJ) $(FTLIB) $(VECLIB) $(MLXLIB) $(LDFLAGS) -o $@
 
 $(FTLIB):
 	@$(MAKE) -C $(FTLIB_DIR) --silent
+
+$(VECLIB):
+	@$(MAKE) -C $(VECLIB_DIR) --silent
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
