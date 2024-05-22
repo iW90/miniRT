@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:47:23 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/22 16:55:58 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:34:37 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 static double	convert_to_radians(double degrees)
 {
 	return (degrees * PI / 180.0);
+}
+
+static t_vector	calculate_corner(t_camera *camera, t_vector w)
+{
+	t_vector	half_horizontal;
+	t_vector	half_vertical;
+	t_vector	origin_minus_horizontal;
+	t_vector	origin_minus_halves;
+	t_vector	negated_horizontal;
+
+	negated_horizontal = vector_negate_self(&camera->viewport.horizontal);
+	half_horizontal = vector_div(negated_horizontal, 2);
+	half_vertical = vector_div(camera->viewport.vertical, 2);
+	origin_minus_horizontal = vector_diff(camera->origin, half_horizontal);
+	origin_minus_halves = vector_diff(origin_minus_horizontal, half_vertical);
+	return (vector_diff(origin_minus_halves, w));
 }
 
 void	camera_on(t_camera *camera)
@@ -39,9 +55,5 @@ void	camera_on(t_camera *camera)
 	v = vector_cross(u, w);
 	camera->viewport.horizontal = vector_mult(u, camera->viewport.width);
 	camera->viewport.vertical = vector_mult(v, camera->viewport.height);
-	camera->viewport.lower_left_corner = vector_diff(
-			vector_diff(
-				vector_diff(camera->origin,
-					vector_div(vector_negate_self(&camera->viewport.horizontal), 2)),
-				vector_div(camera->viewport.vertical, 2)), w);
+	camera->viewport.lower_left_corner = calculate_corner(camera, w);
 }
