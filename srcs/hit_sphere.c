@@ -6,13 +6,13 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:24:00 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 10:43:26 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-static int	check_root_value(t_variation t, t_vector delta, double sqrt_discr,
+static int	check_root_value(t_range t, t_vector delta, double sqrt_discr,
 		double *root)
 {
 	if (t.min > *root || *root > t.max)
@@ -24,7 +24,7 @@ static int	check_root_value(t_variation t, t_vector delta, double sqrt_discr,
 	return (1);
 }
 
-static t_vector	set_out_normal(t_hit_record *rec, t_sphere sphere)
+static t_vector	set_out_normal(t_ray_hit *rec, t_sphere sphere)
 {
 	t_vector	new;
 
@@ -32,7 +32,7 @@ static t_vector	set_out_normal(t_hit_record *rec, t_sphere sphere)
 	return (new);
 }
 
-int	hit_sphere(t_sphere sphere, t_ray *ray, t_variation t, t_hit_record *rec)
+int	hit_sphere(t_sphere sphere, t_ray *ray, t_range t, t_ray_hit *rec)
 {
 	t_vector	distance;
 	t_vector	delta;

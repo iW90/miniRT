@@ -6,13 +6,13 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:21:09 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 17:47:37 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:16:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-int	set_record(double *closest, t_hit_record *tr, t_hit_record *rec, int index)
+int	set_record(double *closest, t_ray_hit *tr, t_ray_hit *rec, int index)
 {
 	*closest = tr->t;
 	*rec = *tr;
@@ -20,7 +20,7 @@ int	set_record(double *closest, t_hit_record *tr, t_hit_record *rec, int index)
 	return (1);
 }
 
-int	hit_object(t_object *obj, t_ray *ray, t_variation var, t_hit_record *tr)
+int	hit_object(t_object *obj, t_ray *ray, t_range var, t_ray_hit *tr)
 {
 	if (obj->shape == SPHERE)
 		return (hit_sphere(*(obj->sphere), ray, var, tr));
@@ -31,12 +31,12 @@ int	hit_object(t_object *obj, t_ray *ray, t_variation var, t_hit_record *tr)
 	return (0);
 }
 
-int	trace_ray_hit(t_object *list, t_ray *ray, t_variation t, t_hit_record *rec)
+int	trace_ray_hit(t_object *list, t_ray *ray, t_range t, t_ray_hit *rec)
 {
-	t_hit_record	tr;
-	int				hit_any;
-	double			closest;
-	t_variation		variation;
+	t_ray_hit	tr;
+	int			hit_any;
+	double		closest;
+	t_range		variation;
 
 	hit_any = 0;
 	closest = t.max;

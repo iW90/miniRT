@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:42:45 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 17:33:13 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:23:29 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct s_ray
 	};
 }					t_ray;
 
-typedef struct s_variation
+typedef struct s_range
 {
 	double			min;
 	double			max;
-}					t_variation;
+}					t_range;
 
 typedef struct s_hit_record
 {
@@ -45,7 +45,7 @@ typedef struct s_hit_record
 	int				front_face;
 	int				index;
 	int				ignore_index;
-}					t_hit_record;
+}					t_ray_hit;
 
 typedef struct s_hit
 {
@@ -57,8 +57,8 @@ typedef struct s_hit
 		t_plane		*plane;
 	};
 	t_ray			*ray;
-	t_variation		t;
-	t_hit_record	*rec;
+	t_range			t;
+	t_ray_hit		*rec;
 }					t_hit;
 
 void		render(void);

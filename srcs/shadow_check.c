@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shadow_is.c                                        :+:      :+:    :+:   */
+/*   shadow_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:52:24 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/22 17:44:43 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:23:01 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-static int	init_shadow_variables(double *closest, t_variation t)
+static int	init_shadow_variables(double *closest, t_range t)
 {
 	*closest = t.max;
 	return (0);
 }
 
-static void	set_t_var(t_variation *t_var, t_variation t, double closest)
+static void	set_t_var(t_range *t_var, t_range t, double closest)
 {
 	t_var->min = t.min;
 	t_var->max = closest;
 }
 
-int	trace_shadow_hit(t_object *list, t_variation t, t_hit *h, int ignore_index)
+int	trace_shadow_hit(t_object *list, t_range t, t_hit *h, int ignore_index)
 {
-	t_hit_record	tr;
-	int				hit_any;
-	double			close;
-	t_variation		variation;
+	t_ray_hit	tr;
+	int			hit_any;
+	double		close;
+	t_range		variation;
 
 	hit_any = init_shadow_variables(&close, t);
 	while (list)
@@ -47,11 +47,11 @@ int	trace_shadow_hit(t_object *list, t_variation t, t_hit *h, int ignore_index)
 
 int	is_shadowed(t_vector point, t_light light, t_object *world, int ignored)
 {
-	t_vector		shadow_vector;
-	t_ray			shadow_ray;
-	t_hit_record	temp_record;
-	t_variation		var;
-	t_hit			hit;
+	t_vector	shadow_vector;
+	t_ray		shadow_ray;
+	t_ray_hit	temp_record;
+	t_range		var;
+	t_hit		hit;
 
 	var.min = 0;
 	var.max = HUGE_VAL;

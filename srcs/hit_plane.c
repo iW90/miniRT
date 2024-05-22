@@ -6,13 +6,13 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:31:25 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 16:01:24 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-int	hit_plane(t_plane plane, t_ray *ray, t_variation t, t_hit_record *rec)
+int	hit_plane(t_plane plane, t_ray *ray, t_range t, t_ray_hit *rec)
 {
 	double	v_distance;
 	double	v_origin;

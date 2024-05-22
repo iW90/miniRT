@@ -6,13 +6,13 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:40:39 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 16:07:52 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
-void	update_hit_record(t_hit_record *rec, t_vector point,
+void	update_hit_record(t_ray_hit *rec, t_vector point,
 	t_vector cap_bottom, t_vector axis)
 {
 	rec->normal = vector_unit(vector_diff(point,

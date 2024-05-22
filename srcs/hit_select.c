@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:49:05 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 16:01:11 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_valid_intersection(double h, double rt, t_hit *hit)
 		&& rt >= hit->t.min && rt <= hit->t.max);
 }
 
-static void	set_hit_record(t_hit *hit, double rt, t_vector point)
+static void	set_ray_hit(t_hit *hit, double rt, t_vector point)
 {
 	hit->rec->t = rt;
 	hit->rec->point = point;
@@ -44,19 +44,19 @@ int	select_hit(double rt[2], t_hit *hit, int vld_inter1, int vld_inter2)
 	if (vld_inter1 && vld_inter2)
 	{
 		if (rt[0] < rt[1])
-			set_hit_record(hit, rt[0], p[0]);
+			set_ray_hit(hit, rt[0], p[0]);
 		else
-			set_hit_record(hit, rt[1], p[1]);
+			set_ray_hit(hit, rt[1], p[1]);
 		return (1);
 	}
 	else if (vld_inter1)
 	{
-		set_hit_record(hit, rt[0], p[0]);
+		set_ray_hit(hit, rt[0], p[0]);
 		return (1);
 	}
 	else if (vld_inter2)
 	{
-		set_hit_record(hit, rt[1], p[1]);
+		set_ray_hit(hit, rt[1], p[1]);
 		return (1);
 	}
 	return (0);

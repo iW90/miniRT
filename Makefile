@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/05/18 11:57:46 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/22 19:19:48 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
 FUN			:=	debug.c \
 				hit_body_or_cap.c \
 				hit_cylinder.c \
-				hit_init_bhaskara.c \
+				hit_init_quadratic.c \
 				hit_init.c \
 				hit_list_hittable.c \
 				hit_plane.c \
@@ -51,7 +51,7 @@ FUN			:=	debug.c \
 				render_core.c \
 				render_ray_at.c \
 				render_ray_color.c \
-				shadow_is.c \
+				shadow_check.c \
 				shadow_lightning.c \
 				util_data.c \
 				util_print_header.c \
