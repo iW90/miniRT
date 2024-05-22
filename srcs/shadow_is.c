@@ -6,20 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:52:24 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 11:07:12 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:44:43 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
-
-static int	set_record(double *closest, t_hit_record *tr,
-	t_hit_record *rec, int index)
-{
-	*closest = tr->t;
-	*rec = *tr;
-	rec->index = index;
-	return (1);
-}
 
 static int	init_shadow_variables(double *closest, t_variation t)
 {
@@ -33,34 +24,28 @@ static void	set_t_var(t_variation *t_var, t_variation t, double closest)
 	t_var->max = closest;
 }
 
-int	hittable_shadow_hit(t_object *list,
-			t_variation t, t_hit *h, int ignore_index)
+int	trace_shadow_hit(t_object *list, t_variation t, t_hit *h, int ignore_index)
 {
 	t_hit_record	tr;
 	int				hit_any;
 	double			close;
-	t_variation		tv;
+	t_variation		variation;
 
 	hit_any = init_shadow_variables(&close, t);
 	while (list)
 	{
 		if (list->index != ignore_index)
 		{
-			set_t_var(&tv, t, close);
-			if (list->shape == SPHERE && hit_sphere(*(list->sphere), h->ray, tv, &tr))
-					hit_any = set_record(&close, &tr, h->rec, list->index);
-			else if (list->shape == PLANE && hit_plane(*(list->plane), h->ray, tv, &tr))
-					hit_any = set_record(&close, &tr, h->rec, list->index);
-			else if (list->shape == CYLINDER && hit_cylinder(list->cyl, h->ray, tv, &tr))
-					hit_any = set_record(&close, &tr, h->rec, list->index);
+			set_t_var(&variation, t, close);
+			if (hit_object(list, h->ray, variation, &tr))
+				hit_any = set_record(&close, &tr, h->rec, list->index);
 		}
 		list = list->next;
 	}
 	return (hit_any);
 }
 
-int	is_shadowed(t_vector point, t_light light,
-				t_object *world, int ignored_index)
+int	is_shadowed(t_vector point, t_light light, t_object *world, int ignored)
 {
 	t_vector		shadow_vector;
 	t_ray			shadow_ray;
@@ -74,11 +59,10 @@ int	is_shadowed(t_vector point, t_light light,
 	shadow_ray.origin = vector_sum(point,
 			vector_mult(vector_unit(shadow_vector), 1e-4));
 	shadow_ray.direction = normalize(shadow_vector);
-	temp_record.ignore_index = ignored_index;
+	temp_record.ignore_index = ignored;
 	hit.rec = &temp_record;
 	hit.ray = &shadow_ray;
-	if (hittable_shadow_hit(world, var,
-			&hit, ignored_index))
+	if (trace_shadow_hit(world, var, &hit, ignored))
 	{
 		if (temp_record.t < vector_length(shadow_vector))
 			return (1);

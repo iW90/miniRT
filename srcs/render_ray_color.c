@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:13:38 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 16:02:46 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:22:58 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vector	ray_color(t_ray ray, t_object *world, t_light light)
 	hit.t.max = HUGE_VAL;
 	hit.ray = &ray;
 	hit.rec = &(t_hit_record){0};
-	if (hittable_list_hit(world, hit.ray, hit.t, hit.rec))
+	if (trace_ray_hit(world, hit.ray, hit.t, hit.rec))
 	{
 		in_shadow = is_shadowed(hit.rec->point, light, world, hit.rec->index);
 		vector_negate_self(&hit.ray->direction);

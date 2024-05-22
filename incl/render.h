@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:42:45 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:33:13 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ typedef struct s_hit
 	t_hit_record	*rec;
 }					t_hit;
 
-void				render(void);
-void				camera_on(t_camera *camera);
-t_vector			ray_color(t_ray ray, t_object *world, t_light light);
-t_vector			ray_at(t_ray ray, double t);
-t_vector			lighting(t_material m, t_light light, t_hit *hit,
-						int in_shadow);
+void		render(void);
+void		camera_on(t_camera *camera);
+t_vector	ray_color(t_ray ray, t_object *world, t_light light);
+t_vector	ray_at(t_ray ray, double t);
+t_vector	lighting(t_material m, t_light light, t_hit *hit, int in_shadow);
 
 #endif
