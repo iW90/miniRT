@@ -6,11 +6,20 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:39:35 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/18 11:06:54 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:55:01 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
+
+static double	clamp(double value, double min, double max)
+{
+	if (value < min)
+		return (min);
+	if (value > max)
+		return (max);
+	return (value);
+}
 
 uint32_t	color_create_rgb(t_vector *color)
 {
@@ -18,40 +27,44 @@ uint32_t	color_create_rgb(t_vector *color)
 	int	g;
 	int	b;
 
-	if (color->x > 1.0)
-		color->x = 1.0;
-	if (color->y > 1.0)
-		color->y = 1.0;
-	if (color->z > 1.0)
-		color->z = 1.0;
+	color->x = clamp(color->x, 0.0, 1.0);
+	color->y = clamp(color->y, 0.0, 1.0);
+	color->z = clamp(color->z, 0.0, 1.0);
 	r = (int)(color->x * 255.99);
 	g = (int)(color->y * 255.99);
 	b = (int)(color->z * 255.99);
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	if (r < 0)
-		r = 0;
-	if (g < 0)
-		g = 0;
-	if (b < 0)
-		b = 0;
+	r = clamp(r, 0, 255);
+	g = clamp(g, 0, 255);
+	b = clamp(b, 0, 255);
 	return (r << 24 | g << 16 | b << 8 | 255);
+}
+
+static t_vector	calculate_ray_direction(t_camera *camera, t_vector normal)
+{
+	t_vector	horizontal_offset;
+	t_vector	vertical_offset;
+	t_vector	lower_left_with_horizontal;
+	t_vector	lower_left_with_horizontal_and_vertical;
+	t_vector	direction;
+
+	horizontal_offset = vector_mult(camera->viewport.horizontal, normal.x);
+	vertical_offset = vector_mult(camera->viewport.vertical, normal.y);
+	lower_left_with_horizontal = \
+		vector_sum(camera->viewport.lower_left_corner, horizontal_offset);
+	lower_left_with_horizontal_and_vertical = \
+		vector_sum(lower_left_with_horizontal, vertical_offset);
+	direction = \
+		vector_diff(lower_left_with_horizontal_and_vertical, camera->origin);
+	return (normalize(direction));
 }
 
 static t_ray	ray_constructor(t_camera *camera, t_vector normal)
 {
-	t_ray	new;
+	t_ray	new_ray;
 
-	new.origin = camera->origin;
-	new.direction = normalize(vector_diff(vector_sum(vector_sum(camera->viewport.lower_left_corner,
-						vector_mult(camera->viewport.horizontal, normal.x)),
-					vector_mult(camera->viewport.vertical, normal.y)),
-				camera->origin));
-	return (new);
+	new_ray.origin = camera->origin;
+	new_ray.direction = calculate_ray_direction(camera, normal);
+	return (new_ray);
 }
 
 void	render(void)
