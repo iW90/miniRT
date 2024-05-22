@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:29:43 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:30:20 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ typedef struct s_object
 	struct s_object	*next;
 }					t_object;
 
-void				add_object(t_shape shape, void *content);
-void				clear_objects(void);
-t_material			default_material(t_vector color);
-void				set_ambient_light(void);
+void		add_object(t_shape shape, void *content);
+void		clear_objects(void);
+void		set_ambient_light(void);
+t_material	default_material(t_vector color);
 
 #endif

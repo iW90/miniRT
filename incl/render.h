@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:42:45 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 19:23:29 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:34:06 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # include "../libs/libvec/incl/libvector.h"
 # include "scene.h"
 
-# define AMBIENT 0
-# define DIFFUSE 1
-# define SPECULAR 2
-# define RESULT 3
+typedef enum e_light_type
+{
+	AMBIENT,
+	DIFFUSE,
+	SPECULAR,
+	RESULT
+}	t_light_type;
 
 typedef struct s_ray
 {
