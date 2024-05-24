@@ -6,11 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 15:08:07 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 16:07:34 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 void	print_sphere(t_sphere *sphere)
 {

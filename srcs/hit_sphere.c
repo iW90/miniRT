@@ -6,18 +6,17 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:24:00 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:38:29 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
-static int	check_root_value(t_range t, t_vector delta, double sqrt_discr,
-		double *root)
+static int	check_root(t_range t, t_vector delta, double sqrt_d, double *root)
 {
 	if (t.min > *root || *root > t.max)
 	{
-		*root = (-delta.y + sqrt_discr) / delta.x;
+		*root = (-delta.y + sqrt_d) / delta.x;
 		if (t.min > *root || *root > t.max)
 			return (0);
 	}
@@ -37,18 +36,18 @@ int	hit_sphere(t_sphere sphere, t_ray *ray, t_range t, t_ray_hit *rec)
 	t_vector	distance;
 	t_vector	delta;
 	t_vector	out_normal;
-	double		discr;
+	double		discriminant;
 	double		root;
 
 	distance = vector_diff(ray->origin, sphere.center);
 	delta.x = vector_length_sqd(ray->direction);
 	delta.y = vector_dot(distance, ray->direction);
 	delta.z = vector_length_sqd(distance) - sphere.radius * sphere.radius;
-	discr = delta.y * delta.y - (delta.x * delta.z);
-	if (discr < 0)
+	discriminant = delta.y * delta.y - (delta.x * delta.z);
+	if (discriminant < 0)
 		return (0);
-	root = (-delta.y - sqrt(discr)) / delta.x;
-	if (!check_root_value(t, delta, sqrt(discr), &root))
+	root = (-delta.y - sqrt(discriminant)) / delta.x;
+	if (!check_root(t, delta, sqrt(discriminant), &root))
 		return (0);
 	rec->t = root;
 	rec->point = ray_at(*ray, rec->t);

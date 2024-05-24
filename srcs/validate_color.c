@@ -6,11 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 00:13:49 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 11:10:17 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 static int	is_valid_color(char *str)
 {

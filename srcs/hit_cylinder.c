@@ -6,11 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:35:56 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 19:12:24 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:23:25 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 int	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_range t, t_ray_hit *rec)
 {
@@ -18,22 +18,22 @@ int	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_range t, t_ray_hit *rec)
 	t_vector	v;
 	t_vector	v_origin_center;
 	t_vector	pj_ori_center;
-	t_quadratic	bhaskara;
+	t_quadratic	quad;
 
 	hit = init_hit(cyl, ray, t, rec);
 	v_origin_center = vector_diff(ray->origin, cyl->cap_bottom);
 	pj_ori_center = vector_project(v_origin_center, cyl->axis);
 	v = vector_project(ray->direction, cyl->axis);
-	bhaskara = init_quadratic(pj_ori_center, v, cyl->radius);
-	if (bhaskara.discr < 0)
+	quad = init_quadratic(pj_ori_center, v, cyl->radius);
+	if (quad.discr < 0)
 		return (0);
-	bhaskara.root[0] = (-bhaskara.b - sqrt(bhaskara.discr)) / (2 * bhaskara.a);
-	bhaskara.root[1] = (-bhaskara.b + sqrt(bhaskara.discr)) / (2 * bhaskara.a);
-	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit, 0, 0)))
+	quad.root[0] = (-quad.b - sqrt(quad.discr)) / (2 * quad.a);
+	quad.root[1] = (-quad.b + sqrt(quad.discr)) / (2 * quad.a);
+	if (!body_or_cap(&hit, select_hit(quad.root, &hit, 0, 0)))
 		return (0);
 	update_hit_record(rec, rec->point, cyl->cap_bottom, cyl->axis);
 	set_face_normal(rec, ray, &rec->normal);
-	if (!body_or_cap(&hit, select_hit(bhaskara.root, &hit, 0, 0)))
+	if (!body_or_cap(&hit, select_hit(quad.root, &hit, 0, 0)))
 		return (0);
 	return (1);
 }

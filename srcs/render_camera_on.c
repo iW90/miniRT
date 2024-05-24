@@ -6,11 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:47:23 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/22 18:34:37 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 static double	convert_to_radians(double degrees)
 {

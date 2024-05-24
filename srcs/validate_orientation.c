@@ -6,11 +6,11 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 00:11:57 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 11:11:31 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 int	validate_orientation(char *str1, char *str2, char *str3)
 {

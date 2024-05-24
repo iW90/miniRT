@@ -6,23 +6,21 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:43:31 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/22 19:16:18 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:22:37 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 double	calculate_t_bt(t_vector aot, t_ray ray, t_vector axis)
 {
-	if (fabs(vector_dot(ray.direction, axis)) < 1e-6)
+	if (fabs(vector_dot(ray.direction, axis)) < M_EPSILON)
 		return (-1);
 	return (vector_dot(aot, axis) / vector_dot(ray.direction, axis));
 }
 
-int	hit_caps_helper(t_hit *hit, double t_val,
-	t_vector point, int is_bottom)
+int	hit_caps_helper(t_hit *hit, double t_val, t_vector point, int is_bottom)
 {
-	const double	epsilon = 1e-6;
 	double			radius;
 	t_vector		cap;
 
@@ -32,7 +30,7 @@ int	hit_caps_helper(t_hit *hit, double t_val,
 		cap = hit->cyl->cap_top;
 	radius = vector_length(vector_diff(point, cap));
 	if (t_val >= hit->t.min && t_val <= hit->t.max \
-		&& radius <= hit->cyl->radius - epsilon)
+		&& radius <= hit->cyl->radius - M_EPSILON)
 	{
 		hit->rec->t = t_val;
 		hit->rec->point = point;
