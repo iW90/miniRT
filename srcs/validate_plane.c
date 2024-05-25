@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_plane.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 22:08:01 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static int	validate_plane_position(char *line, t_plane *plane)
 	char	**split;
 
 	split = ft_split(line, ',');
-	if (!ft_is_numeric_string(split[0]) || !ft_is_numeric_string(split[1])
-		|| !ft_is_numeric_string(split[2]))
+	if (!ft_isstrnum(split[0]) || !ft_isstrnum(split[1])
+		|| !ft_isstrnum(split[2]))
 	{
 		free_split(split);
 		return (0);

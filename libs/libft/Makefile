@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 17:06:10 by inwagner          #+#    #+#              #
-#    Updated: 2024/05/18 11:37:13 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ FTS		:=	ft_abs.c \
 			ft_isspace.c \
 			ft_isupper.c \
 			ft_isxdigit.c \
-			ft_is_numeric_string.c \
+			ft_isstrnum.c \
 			ft_itoa.c \
 			ft_memchr.c \
 			ft_memcmp.c \
