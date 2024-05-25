@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:48:00 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/25 11:56:44 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:31:28 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 # define COLOR_WH_1 "\033[1;37m"
 
 # ifdef DEBUG
-    # define WIDTH 320
-    # define HEIGHT 240
-    # define ASPECT_RATIO 1.33333333333
+#  define WIDTH 320
+#  define HEIGHT 240
+#  define ASPECT_RATIO 1.33333333333
 # else
-    # define WIDTH 1920
-    # define HEIGHT 1080
-    # define ASPECT_RATIO 1.7777777777679
-    # define DEBUG 0
+#  define WIDTH 1920
+#  define HEIGHT 1080
+#  define ASPECT_RATIO 1.7777777777679
+#  define DEBUG 0
 # endif
 
 # define PI 3.1415926535897932385
