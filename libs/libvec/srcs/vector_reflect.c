@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_reflect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:32 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 16:14:20 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libvector.h"
 
-int	main(int argc, char **argv)
+t_vector	vector_reflect(t_vector v, t_vector n)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	t_vector		result;
+	const double	dot_product = 2 * (v.x * n.x + v.y * n.y + v.z * n.z);
+
+	result.x = v.x - dot_product * n.x;
+	result.y = v.y - dot_product * n.y;
+	result.z = v.z - dot_product * n.z;
+	return (result);
 }

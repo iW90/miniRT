@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_hook.c                                        :+:      :+:    :+:   */
+/*   vector_sub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 10:53:19 by maalexan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:46:25 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:35 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libvector.h"
 
-void	key_hook(struct mlx_key_data key_data, void *param)
+t_vector	vector_sub(t_vector vector, double value)
 {
-	mlx_t	*mlx;
+	t_vector	new;
 
-	mlx = param;
-	if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
-		mlx_close_window(mlx);
-	else if (key_data.action == MLX_PRESS)
-		printf("Key: %i\n", key_data.key);
-}
-
-void	close_hook(void *param)
-{
-	mlx_t	*mlx;
-
-	mlx = param;
-	mlx_close_window(mlx);
+	new.x = vector.x - value;
+	new.y = vector.y - value;
+	new.z = vector.z - value;
+	return (new);
 }

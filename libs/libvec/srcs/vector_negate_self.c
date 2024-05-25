@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_negate_self.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:23 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libvector.h"
 
-int	main(int argc, char **argv)
+t_vector	vector_negate_self(t_vector *vector)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	vector->x *= -1;
+	vector->y *= -1;
+	vector->z *= -1;
+	return (*vector);
 }

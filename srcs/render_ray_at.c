@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render_ray_at.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
+/*   Created: 2024/03/16 03:25:31 by maalexan          #+#    #+#             */
 /*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char **argv)
+t_vector	ray_at(t_ray ray, double t)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	t_vector	point3;
+
+	point3 = vector_sum(ray.origin, vector_mult(ray.direction, t));
+	return (point3);
 }

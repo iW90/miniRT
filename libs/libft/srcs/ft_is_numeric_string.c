@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_numeric_string.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Created: 2024/05/18 11:23:28 by maalexan          #+#    #+#             */
+/*   Updated: 2024/05/18 11:38:19 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_is_numeric_string(const char *str)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	int	dot_found;
+
+	if (*str == '\0')
+		return (0);
+	if (*str == '-')
+		str++;
+	dot_found = 0;
+	while (*str)
+	{
+		if (ft_isdigit(*str))
+			str++;
+		else if (*str == '.' && !dot_found)
+		{
+			dot_found = 1;
+			str++;
+		}
+		else if (*str == '\n')
+			return (1);
+		else
+			return (0);
+	}
+	return (1);
 }

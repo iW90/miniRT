@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_sum_self.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Created: 2024/03/15 22:28:39 by inwagner          #+#    #+#             */
+/*   Updated: 2024/05/18 11:58:47 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libvector.h"
 
-int	main(int argc, char **argv)
+t_vector	vector_sum_self(t_vector *vector, t_vector *add)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	vector->x += add->x;
+	vector->y += add->y;
+	vector->z += add->z;
+	return (*vector);
 }

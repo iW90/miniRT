@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:03:22 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/08 11:59:11 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:24:10 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@
 # ifndef I_MIN
 #  define I_MIN -2147483648
 # endif
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 128
+# endif
+
+typedef struct s_node
+{
+	char	*buffer;
+	int		start;
+	int		end;
+	int		size;
+	int		parsed;
+}			t_node;
 
 // Char
 int		ft_isalnum(int c);
@@ -62,6 +75,7 @@ int		ft_strcmp(const char *str1, const char *str2);
 size_t	ft_abs(int n);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
+float	ft_atof(const char *str);
 long	ft_atol(const char *str);
 
 // Memory
@@ -79,9 +93,14 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 
+// GNL
+
+char	*get_next_line(int fd);
+
 // New Functions
 size_t	ft_strspn(const char *str, const char *charset);
 size_t	ft_strcspn(const char *str, const char *reject);
 char	*ft_strtok(char *str, const char *delimiters);
+int		ft_is_numeric_string(const char *str);
 
 #endif

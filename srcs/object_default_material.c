@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   object_default_material.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
+/*   Created: 2024/03/16 00:35:28 by maalexan          #+#    #+#             */
 /*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char **argv)
+t_material	default_material(t_vector color)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	t_material	m;
+
+	m.ambient = get_data()->ambient.ratio;
+	m.diffuse = 0.9;
+	m.specular = 0;
+	m.shininess = 200;
+	m.color = vector_create(color.x, color.y, color.z);
+	return (m);
 }

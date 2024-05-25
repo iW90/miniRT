@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:08:29 by maalexan          #+#    #+#             */
+/*   Created: 2024/03/16 02:30:34 by inwagner          #+#    #+#             */
 /*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char **argv)
+void	render_try(void *param)
 {
-	print_header();
-	validate_args(argc, argv);
-	set_ambient_light();
-	init_resolution();
-	render();
-	window_loop();
-	if (DEBUG)
-		print_data();
-	clear_objects();
-	return (0);
+	(void)param;
+	if (mlx_is_key_down(get_data()->mlx.mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(get_data()->mlx.mlx);
+}
+
+void	window_loop(void)
+{
+	mlx_image_to_window(get_data()->mlx.mlx, get_data()->mlx.image, 0, 0);
+	mlx_loop_hook(get_data()->mlx.mlx, render_try, NULL);
+	mlx_loop(get_data()->mlx.mlx);
+	mlx_terminate(get_data()->mlx.mlx);
 }
