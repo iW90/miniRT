@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/05/22 19:19:48 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/25 11:56:07 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,10 @@ VECLIB		:=  ./libs/libvector.a
 
 # Compilation flags
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
-BCFLAGS		:=	-Wall -Wextra -Werror -g -I ./bonus/incl
+CFLAGS		:=	-Wall -Wextra -Werror -I $(HDR_DIR)
+BCFLAGS		:=	-Wall -Wextra -Werror -I ./bonus/incl
 LDFLAGS		:=	-lX11 -lglfw -lGL -lXext -lm -ldl
+DEBUG_FLAGS :=  -DDEBUG -Wall -Wextra -Werror -g -I $(HDR_DIR)
 
 # Source files
 FUN			:=	debug.c \
@@ -73,6 +74,9 @@ FUN			:=	debug.c \
 OBJ			:=	$(FUN:%.c=$(OBJ_DIR)/%.o)
 BOBJ		:=	$(BFUN:%.c=$(OBJ_DIR)/%.o)
 
+# Valgrind files
+SUPPRESSION_FILE := codam_leaks.supp
+
 all: $(NAME)
 
 $(NAME): $(MLXLIB) $(FTLIB) $(VECLIB) $(OBJ)
@@ -109,15 +113,26 @@ $(MLXLIB):
 	cd .. && \
 	rm -rf MLX42
 
-val: all
-	@valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes ./${NAME} || echo ""
+debug: CFLAGS = $(DEBUG_FLAGS)
+debug: val
+
+val: all $(SUPPRESSION_FILE)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=$(SUPPRESSION_FILE) ./${NAME} \
+	scenes/mandatory.rt || echo ""
+
+create_suppression_file: $(SUPPRESSION_FILE)
+
+$(SUPPRESSION_FILE):
+	printf "{\n   <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:_dl_catch_exception\n   ...\n}\n{\n <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:mlx_init\n   ...\n}\n{\n <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:XrmGetStringDatabase\n   ...\n}\n{\n <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:_XrmInitParseInfo\n   ...\n}\n{\n <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:__tls_get_addr\n   ...\n}\n{\n <MLX_CODAM>\n   Memcheck:Leak\n   match-leak-kinds: reachable\n   ...\n   fun:__pthread_once_slow\n   ...\n}\n" > $(SUPPRESSION_FILE)
 
 clean:
 	@$(MAKE) -C $(FTLIB_DIR) --silent clean
 	@[ -d ./objs ] && rm -rf ./objs || echo Object directory doesn\'t exist
+	@[ -f $(SUPPRESSION_FILE) ] && rm -rf $(SUPPRESSION_FILE) || [ -f Makefile ]
 
 fclean: clean
 	@$(MAKE) -C $(FTLIB_DIR) --silent fclean
+	@$(MAKE) -C $(VECLIB_DIR) --silent fclean
 	@[ -f $(MLXLIB) ] && rm $(MLXLIB) || [ -f Makefile ]
 	@[ -d ./incl/mlx ] && rm -rf ./incl/mlx || [ -f Makefile ]
 	@[ -f ./$(NAME) ] && rm $(NAME) || echo Program $(NAME) isn\'t compiled
@@ -125,4 +140,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re create_suppression_file
