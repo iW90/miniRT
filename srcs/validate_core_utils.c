@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 10:23:06 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/26 10:26:41 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:29:56 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	validate_line(char *line)
 {
 	int				i;
 	char			*id;
-	static t_parse	parse[] = {{"A ", validate_ambient, 0},\
-	{"C ", validate_camera, 0}, {"L ", validate_light, 0},\
-	{"sp", validate_sphere,	0}, {"pl", validate_plane, 0},\
+	static t_parse	parse[] = {{"A ", validate_ambient, 0}, \
+	{"C ", validate_camera, 0}, {"L ", validate_light, 0}, \
+	{"sp", validate_sphere,	0}, {"pl", validate_plane, 0}, \
 	{"cy", validate_cylinder, 0}, {NULL, NULL, 0}};
 
 	id = ft_substr(line, 0, 2);
@@ -47,9 +47,11 @@ static int	print_line_error(char *line)
 	return (0);
 }
 
-void process_line(t_file *file_scene)
+void	process_line(t_file *file_scene)
 {
-	while (file_scene->line && file_scene->valid == 1 && file_scene->line[0] != '\0')
+	while (file_scene->line \
+			&& file_scene->valid == 1 \
+			&& file_scene->line[0] != '\0')
 	{
 		if (file_scene->line[0] == '\n')
 		{
@@ -76,6 +78,3 @@ void	handle_line_error(t_file *file_scene)
 		file_scene->line = get_next_line(file_scene->fd);
 	}
 }
-
-
-
