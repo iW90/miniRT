@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:31 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/25 12:29:03 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:14:45 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	print_first_header(void)
 	printf("   •  •     \n");
 	printf("┏┳┓┓┏┓┓  ┏┓╋\n");
 	printf("┛┗┗┗┛┗┗  ┛ ┗\n");
-	printf("\n");
 }
 
 void	print_second_header(void)
