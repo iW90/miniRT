@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_cylinder.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 22:02:42 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:05:18 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,29 +79,61 @@ static int	validate_cylinder_orientation(char *line, t_cylinder *cylinder)
 	return (1);
 }
 
+/*
+new file
+*/
+static int validate_split(char **split)
+{
+	return split[0] && split[1] && split[2] && split[3] && split[4] && !split[5];
+}
+
+static int handle_invalid_split(char **split)
+{
+	free_split(split);
+	return (0);
+}
+
+static int handle_invalid_cylinder(t_cylinder *cylinder, char **split)
+{
+	free(cylinder);
+	return (handle_invalid_split(split));
+}
+
+static int parse_cylinder_properties(char **split, t_cylinder *cylinder)
+{
+	return validate_cylinder_position(split[0], cylinder)
+		&& validate_cylinder_orientation(split[1], cylinder)
+		&& validate_cylinder_diameter(split[2], cylinder)
+		&& validate_cylinder_height(split[3], cylinder)
+		&& validate_color(split[4], &cylinder->material.color);
+}
+
+static void set_cylinder_properties(t_cylinder *cylinder)
+{
+	cylinder->material = default_material(cylinder->material.color);
+	cylinder->cap_top = vector_sum(cylinder->center, vector_mult(cylinder->axis, cylinder->height / 2.0));
+	cylinder->cap_bottom = vector_sum(cylinder->center, vector_mult(cylinder->axis, -(cylinder->height / 2.0)));
+}
+/*
+end new file
+*/
+
 int	validate_cylinder(char *line)
 {
 	char		**split;
 	t_cylinder	*cylinder;
 
-	cylinder = ft_calloc(1, sizeof(t_cylinder));
 	while (*line++ == ' ')
 		;
 	split = ft_split(line, ' ');
-	if (!split[0] || !split[1] || !split[2] || !split[3] || !split[4]
-		|| split[5] != NULL)
-		return (free_split(split));
-	if (!validate_cylinder_position(split[0], cylinder)
-		|| !validate_cylinder_orientation(split[1], cylinder)
-		|| !validate_cylinder_diameter(split[2], cylinder)
-		|| !validate_cylinder_height(split[3], cylinder)
-		|| !validate_color(split[4], &cylinder->material.color))
-		return (free_split(split));
-	cylinder->material = default_material(cylinder->material.color);
-	cylinder->cap_top = vector_sum(cylinder->center, vector_mult(cylinder->axis,
-				cylinder->height / 2.0));
-	cylinder->cap_bottom = vector_sum(cylinder->center,
-			vector_mult(cylinder->axis, -(cylinder->height / 2.0)));
+	if (!validate_split(split))
+		return handle_invalid_split(split);
+	cylinder = ft_calloc(1, sizeof(t_cylinder));
+	if (!cylinder)
+		return handle_invalid_split(split);
+	if (!parse_cylinder_properties(split, cylinder))
+		return handle_invalid_cylinder(cylinder, split);
+	set_cylinder_properties(cylinder);
 	add_object(CYLINDER, cylinder);
 	free_split(split);
 	return (1);

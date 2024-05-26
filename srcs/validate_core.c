@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:26:25 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/26 09:47:42 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:54:54 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,36 +90,47 @@ char	*format_spaces(char *line)
 	return (new_line);
 }
 
-int	validate_scene(char *file)
+static void handle_line_error(t_file *file_scene)
 {
-	t_file	file_scene;
+	file_scene->valid = print_line_error(file_scene->line);
+	while (file_scene->line)
+	{
+		free(file_scene->line);
+		file_scene->line = get_next_line(file_scene->fd);
+	}
+}
+
+static void process_line(t_file *file_scene)
+{
+	while (file_scene->line && file_scene->valid == 1 && file_scene->line[0] != '\0')
+	{
+		if (file_scene->line[0] == '\n')
+		{
+			free(file_scene->line);
+			file_scene->line = get_next_line(file_scene->fd);
+			continue;
+		}
+		if (!validate_line(file_scene->line))
+		{
+			handle_line_error(file_scene);
+			break;
+		}
+		free(file_scene->line);
+		file_scene->line = get_next_line(file_scene->fd);
+	}
+}
+
+int validate_scene(char *file)
+{
+	t_file file_scene;
 
 	file_scene.valid = 1;
 	file_scene.fd = valid_fd(file);
 	file_scene.line = get_next_line(file_scene.fd);
-	while (file_scene.line && file_scene.valid == 1
-		&& file_scene.line[0] != '\0')
-	{
-		if (file_scene.line[0] == '\n')
-		{
-			free(file_scene.line);
-			file_scene.line = get_next_line(file_scene.fd);
-			continue ;
-		}
-		if (!validate_line(file_scene.line))
-		{
-			file_scene.valid = print_line_error(file_scene.line);
-			while(file_scene.line)
-			{
-				free(file_scene.line);
-				file_scene.line = get_next_line(file_scene.fd);
-			}
-			break;
-		}
-		free(file_scene.line);
-		file_scene.line = get_next_line(file_scene.fd);
-	}
+
+	process_line(&file_scene);
+
 	free(file_scene.line);
 	close(file_scene.fd);
-	return (file_scene.valid);
+	return file_scene.valid;
 }
