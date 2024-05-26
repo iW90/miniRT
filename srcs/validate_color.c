@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 00:13:49 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_valid_color(char *str)
 {
 	if (!str)
 		return (0);
-	return (ft_is_numeric_string(str) && ft_atoi(str) >= 0
+	return (ft_isstrnum(str) && ft_atoi(str) >= 0
 		&& ft_atoi(str) <= 255);
 }
 

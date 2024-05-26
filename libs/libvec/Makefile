@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 00:31:29 by maalexan          #+#    #+#              #
-#    Updated: 2024/05/18 11:59:03 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/25 14:02:31 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
