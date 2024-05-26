@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 22:57:37 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/18 16:15:57 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:18:29 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ int		validate_light(char *line);
 int		validate_sphere(char *line);
 int		validate_plane(char *line);
 int		validate_cylinder(char *line);
+int		validate_cy_split(char **split);
+int		validate_cylinder_position(char *line, t_cylinder *cylinder);
+int		validate_cylinder_diameter(char *line, t_cylinder *cylinder);
+int		validate_cylinder_height(char *line, t_cylinder *cylinder);
+int		validate_cylinder_orientation(char *line, t_cylinder *cylinder);
+int		handle_invalid_split(char **split);
+int		handle_invalid_cylinder(t_cylinder *cylinder, char **split);
+int		parse_cylinder_properties(char **split, t_cylinder *cylinder);
+void	set_cylinder_properties(t_cylinder *cylinder);
 int		free_split(char **split);
 
 #endif

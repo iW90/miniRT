@@ -6,7 +6,7 @@
 #    By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 19:37:25 by maalexan          #+#    #+#              #
-#    Updated: 2024/05/25 11:56:07 by maalexan         ###   ########.fr        #
+#    Updated: 2024/05/26 10:13:27 by maalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ FUN			:=	debug.c \
 				validate_color.c \
 				validate_core.c \
 				validate_cylinder.c \
+				validate_cylinder_utils.c \
 				validate_free_split.c \
 				validate_light.c \
 				validate_orientation.c \
