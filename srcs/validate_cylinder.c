@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 22:02:42 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/26 10:18:38 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:21:00 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ int	validate_cylinder(char *line)
 		;
 	split = ft_split(line, ' ');
 	if (!validate_cy_split(split))
-		return handle_invalid_split(split);
+		return (handle_invalid_split(split));
 	cylinder = ft_calloc(1, sizeof(t_cylinder));
 	if (!cylinder)
-		return handle_invalid_split(split);
+		return (handle_invalid_split(split));
 	if (!parse_cylinder_properties(split, cylinder))
-		return handle_invalid_cylinder(cylinder, split);
+		return (handle_invalid_cylinder(cylinder, split));
 	set_cylinder_properties(cylinder);
 	add_object(CYLINDER, cylinder);
 	free_split(split);

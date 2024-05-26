@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 22:57:37 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/26 10:18:29 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:25:03 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_parse
 }			t_parse;
 
 void	validate_args(int argc, char **argv);
+void	handle_line_error(t_file *file_scene);
+void	process_line(t_file *file_scene);
 int		validate_scene(char *file);
 int		validate_orientation(char *str1, char *str2, char *str3);
 int		validate_color(char *line, t_vector *color);
