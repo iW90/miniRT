@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:26:25 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/25 15:15:41 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:47:42 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,15 @@ int	validate_scene(char *file)
 			continue ;
 		}
 		if (!validate_line(file_scene.line))
+		{
 			file_scene.valid = print_line_error(file_scene.line);
+			while(file_scene.line)
+			{
+				free(file_scene.line);
+				file_scene.line = get_next_line(file_scene.fd);
+			}
+			break;
+		}
 		free(file_scene.line);
 		file_scene.line = get_next_line(file_scene.fd);
 	}

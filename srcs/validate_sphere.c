@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 22:09:57 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:51:58 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ int	validate_sphere(char *line)
 	if (!validate_sphere_position(split[0], sphere)
 		|| !validate_sphere_diameter(split[1], sphere)
 		|| !validate_color(split[2], &sphere->material.color))
+	{
+		free(sphere);
 		return (free_split(split));
+	}
 	sphere->material = default_material(sphere->material.color);
 	add_object(SPHERE, sphere);
 	free_split(split);

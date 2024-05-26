@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_plane.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 22:08:01 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/25 14:05:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:43:54 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,19 @@ int	validate_plane(char *line)
 	char	**split;
 	t_plane	*plane;
 
-	plane = ft_calloc(1, sizeof(t_plane));
 	while (*line++ == ' ')
 		;
 	split = ft_split(line, ' ');
 	if (!split[0] || !split[1] || !split[2] || split[3] != NULL)
 		return (free_split(split));
+	plane = ft_calloc(1, sizeof(t_plane));
 	if (!validate_plane_position(split[0], plane)
 		|| !validate_plane_orientation(split[1], plane)
 		|| !validate_color(split[2], &plane->material.color))
+	{
+		free(plane);
 		return (free_split(split));
+	}
 	plane->material = default_material(plane->material.color);
 	add_object(PLANE, plane);
 	free_split(split);
