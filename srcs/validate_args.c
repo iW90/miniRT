@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:17:28 by inwagner          #+#    #+#             */
-/*   Updated: 2024/05/24 13:53:38 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:37:28 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	print_and_exit(char *message, int error_code)
 	exit(error_code);
 }
 
-static int	check_file_extention(const char *str, const char *ext)
+static int	check_file_extension(const char *str, const char *ext)
 {
 	int	i;
 	int	j;
@@ -46,7 +46,7 @@ void	validate_args(int argc, char **argv)
 {
 	if (argc != 2)
 		print_and_exit("Invalid number of arguments.\n", EINVAL);
-	if (!check_file_extention(argv[1], ".rt") || ft_strlen(argv[1]) < 4)
+	if (!check_file_extension(argv[1], ".rt") || ft_strlen(argv[1]) < 4)
 		print_and_exit("Invalid file extention.\n", ENOEXEC);
 	if (!validate_scene(argv[1]))
 	{
