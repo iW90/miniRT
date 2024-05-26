@@ -16,7 +16,7 @@ int	ft_isstrnum(const char *str)
 {
 	int	dot_found;
 
-	if (*str == '\0')
+	if (!str || *str == '\0')
 		return (0);
 	if (*str == '-')
 		str++;
