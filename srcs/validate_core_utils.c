@@ -6,7 +6,7 @@
 /*   By: maalexan <maalexan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 10:23:06 by maalexan          #+#    #+#             */
-/*   Updated: 2024/05/26 10:29:56 by maalexan         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:30:32 by maalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	process_line(t_file *file_scene)
 		{
 			free(file_scene->line);
 			file_scene->line = get_next_line(file_scene->fd);
-			continue;
+			continue ;
 		}
 		if (!validate_line(file_scene->line))
 		{
 			handle_line_error(file_scene);
-			break;
+			break ;
 		}
 		free(file_scene->line);
 		file_scene->line = get_next_line(file_scene->fd);
